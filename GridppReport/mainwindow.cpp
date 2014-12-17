@@ -25,10 +25,12 @@ void MainWindow::fun2ActiveX()
     //GridppReport对象
     QAxObject object(QString::fromUtf8(GridppReport), ui->axWidget);
     object.dynamicCall("LoadFromFile(string)","1.grf");
-    object.dynamicCall("PrintPreview(Boolean)", true);
+//    object.dynamicCall("PrintPreview(Boolean)", true);
 
+    qDebug()<<(object.objectName());
     qDebug()<<(object.property("Report"));
-    ui->axWidget->setProperty("Report",object);
+
+//    ui->axWidget->setProperty("Report",object);
     ui->axWidget->dynamicCall("Start()");
 
 }
