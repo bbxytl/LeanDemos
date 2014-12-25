@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>670</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QAxWidget" name="axWidget">
       <property name="control" stdset="0">
-       <string>{613f3ae0-d4eb-4f9f-b750-576c09700351}</string>
+       <string>{e060afe6-5eff-4830-b7f0-093ecc08ef37}</string>
       </property>
      </widget>
     </item>
@@ -36,7 +36,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>670</width>
      <height>23</height>
     </rect>
    </property>

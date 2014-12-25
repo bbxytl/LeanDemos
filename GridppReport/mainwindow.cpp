@@ -19,19 +19,28 @@ MainWindow::~MainWindow()
 
 void MainWindow::fun2ActiveX()
 {
-    qDebug()<<(ui->axWidget->property("Name").toString());
-    ui->axWidget->setProperty("Name","DisplyView");
-    qDebug()<<(ui->axWidget->property("Name").toString());
+//    qDebug()<<(ui->axWidget->property("Name").toString());
+//    ui->axWidget->setProperty("Name","DisplyView");
+//    qDebug()<<(ui->axWidget->property("Name").toString());
     //GridppReport对象
-    QAxObject object(QString::fromUtf8(GridppReport), ui->axWidget);
-    object.dynamicCall("LoadFromFile(string)","1.grf");
-//    object.dynamicCall("PrintPreview(Boolean)", true);
+//    QAxObject object(QString::fromUtf8(DC_GridppReport), ui->axWidget);
+//    object.dynamicCall("LoadFromFile(string)","1.grf");
+////    object.dynamicCall("PrintPreview(Boolean)", true);
 
-    qDebug()<<(object.objectName());
-    qDebug()<<(object.property("Report"));
+//    qDebug()<<(object.objectName());
+//    qDebug()<<(object.property("Report"));
 
-//    ui->axWidget->setProperty("Report",object);
+////    ui->axWidget->setProperty("Report",object);
+
+//    ui->axWidget->dynamicCall("Start()");
+
+//    ui->axWidget->setControl(DC_GridppReport);
+    QAxObject *gp=ui->axWidget->querySubObject("Report");
+    qDebug()<<("dsfadfadf");
+    gp->dynamicCall("LoadFromFile(QString)","1.grf");
+        qDebug()<<("dsfadfadf");
     ui->axWidget->dynamicCall("Start()");
+
 
 }
 
