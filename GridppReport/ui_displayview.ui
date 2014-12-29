@@ -66,7 +66,7 @@
         <item row="0" column="0">
          <widget class="QAxWidget" name="axWidget_designer">
           <property name="control" stdset="0">
-           <string>{f5efb38e-ebef-46e9-a9b5-051076391d75}</string>
+           <string>{76ab1c26-34a0-4898-a90b-74ccff435c43}</string>
           </property>
          </widget>
         </item>
