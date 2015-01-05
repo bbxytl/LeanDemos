@@ -178,8 +178,8 @@
    <addaction name="separator"/>
    <addaction name="act_Open"/>
    <addaction name="separator"/>
-   <addaction name="action_RS"/>
    <addaction name="action_FunArgs"/>
+   <addaction name="action_RS"/>
    <addaction name="separator"/>
    <addaction name="action_Run"/>
    <addaction name="separator"/>

@@ -52,6 +52,7 @@ void MainWindow::on_action_Exit_triggered()
 void MainWindow::on_action_Run_triggered()
 {
 #if 1
+    //所有调用的头准备
     QString sFunName=ui->lineEdit_Fun->text().trimmed(); //设置要调用的JS函数名
     //给函数设置参数
     QStringList sl=ui->textEdit_Args->document()->toPlainText().split("\n");
@@ -69,59 +70,81 @@ void MainWindow::on_action_Run_triggered()
             }
         }
     }
-#endif
-
-    //正确的调用方法------  最重要的部分--Begin      JS_DBCon.js
-
-    m_engine.evaluate(m_ScriptString);
-    QScriptValue global = m_engine.globalObject();    //获取全局对象
-    JSDatabase * pm = new JSDatabase( );
-    const int typeId1=qRegisterMetaType<QSqlDatabase*>("QSqlDatabase*");
-    const int typeId2=qRegisterMetaType<QSqlDatabase*>("QSqlQuery*");
-
+    //链接准备
     QString ip="192.168.0.150";
-    int port=1433;
+    int     port=1433;
     QString name="sa";
     QString pass="engires";
     QString dbname="ER_BILL_10";
+    QString con=QString("Driver={sql server};\
+                        SERVER=%1;\
+                        PORT=%2;\
+                        DATABASE=%3;\
+                        UID=%4;\
+                        PWD=%5;")
+                        .arg(ip)
+                        .arg(port)
+                        .arg(dbname)
+                        .arg(name)
+                        .arg(pass);
+
+    m_engine.evaluate(m_ScriptString);
+    QScriptValue global = m_engine.globalObject();    //获取全局对象
+
+#endif
+
+#if 1
+    //使用类JSDataSet调用--最终的类
+    JSDataSet * pds = new JSDataSet(con);  //没有设置SQL语句
+    pds->setDatabase("QODBC",dbname);
+
+    //向JS里添加全局变量
+    QScriptValue js= m_engine.newQObject(pds);   //创建一个全局对象
+    global.setProperty("pds",js);               //绑定到js里的全局对象名
+
+    //调用执行JavaScript里的函数
+    QScriptValue func = global.property(sFunName);       //根据函数名获取到函数
+    QScriptValue result = func.call(QScriptValue(),args);//传入参数执行函数
+
+    //输出显示部分
+    ui->textEdit_RS->append("调用函数 : "+sFunName);
+    QString str;
+    foreach (QString var, sl) {
+        str=str+var+"  ";
+    }
+    ui->textEdit_RS->append("函数参数 : "+str);
+    ui->textEdit_RS->append("运行结果 :");
+    ui->textEdit_RS->append(result.toString());
+
+    ui->textEdit_RS->append(pds->getInformationString("\n"));
+
+//    pds->close();
+//    pds->removeDatabase(dbname);
+    delete pds;
+
+
+#endif
+
+#if 0
+
+#if 1
+    //使用类JSDatabase的调用---测试类
+    //正确的调用方法------  最重要的部分--Begin      JS_DBCon.js
+
+    JSDatabase * pm = new JSDatabase( );
+
     pm->dbs=QSqlDatabase::addDatabase("QODBC",dbname);
 
-//    QSqlQuery sq(pm->dbs);
-//    pm->query=sq;
-
-    QString dsn=QString("Driver={sql server};SERVER=%1;PORT=%2;DATABASE=%3;UID=%4;PWD=%5;")
-            .arg(ip)
-            .arg(port)
-            .arg(dbname)
-            .arg(name)
-            .arg(pass);
     pm->dbs.setDatabaseName(dsn);
-
-//    pm->dbs.open();
-//    QSqlQuery query("select * from tblbill",pm->dbs);
-//        qDebug()<<" 已-执行-查询信息";
-//        int n=query.size();
-//        n=0;
-//        while(query.next()){
-//            qDebug()<<query.value(n++).toString();
-//        }
-
-
 
     QScriptValue mes1=m_engine.newQObject(pm);
     global.setProperty("pDS",mes1);
-//    QSqlDatabase sdb;
-//    QScriptValue sqlID=m_engine.newObject();
-//    QScriptValue prototype = m_engine.newQObject(new QSqlDatabase( ));
-//    m_engine.setDefaultPrototype(typeId1, mes1.);
-
 
     //调用执行JavaScript里的函数
     QScriptValue func = global.property(sFunName);       //根据函数名获取到函数
     QScriptValue result = func.call(QScriptValue(),args);//传入参数执行函数
 
     // ------ 最重要的部分 End
-
 
     //输出显示部分
     ui->textEdit_RS->append("调用函数 : "+sFunName);
@@ -134,29 +157,19 @@ void MainWindow::on_action_Run_triggered()
     ui->textEdit_RS->append(result.toString());
 
 
-//    QSqlRecord rec = pm->query.record();
-
-//    pm->ls << "Number of columns: " << QString(rec.count());
-
-//    int nameCol = rec.indexOf("name"); // index of the field "name"
-//    while (pm->query.next())
-//        pm->ls<< pm->query.value(nameCol).toString(); // output all names
-
-
-
     foreach(QString var,pm->ls){
         ui->textEdit_RS->append(var);
     }
 
     delete pm;
+#endif
 
-#if 0
+
 
 #if 1
-    //正确的调用方法------  最重要的部分--Begin      JSCode.js
-    m_engine.evaluate(m_ScriptString);
-    QScriptValue global = m_engine.globalObject();    //获取全局对象
-    Mes * pm = new Mes( );
+    //一个简单的调用流程
+    //正确的调用方法------  最重要的部分--Begin      JSCode.js    
+    JSDatabase * pm = new JSDatabase( );
     pm->SetMessage("TL--HELLo");
     QScriptValue mes1=m_engine.newQObject(pm);
     global.setProperty("pDS",mes1);
@@ -164,9 +177,7 @@ void MainWindow::on_action_Run_triggered()
 #endif
 
 #if 0
-    //失败的调用方法
-    engine.evaluate(m_ScriptString);
-    QScriptValue global = engine.globalObject();    //获取全局对象
+    //失败的调用方法    
     QString m_Mes="TL--HELLo";
     QObject * qo = (QObject *)(&m_Mes); //QString不是继承自QObject，转换失败
     qDebug()<<(&m_Mes);

@@ -14,11 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    jsdatabase.cpp
+    jsdatabase.cpp \
+    jsdataset.cpp
 
 HEADERS  += mainwindow.h \
     ahead.h \
-    jsdatabase.h
+    jsdatabase.h \
+    jsdataset.h
 
 FORMS    += mainwindow.ui
 

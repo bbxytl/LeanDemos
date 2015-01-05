@@ -35,6 +35,9 @@ public:
     Q_INVOKABLE bool DBS_Open();
     Q_INVOKABLE bool DBS_Close();
     Q_INVOKABLE bool DBS_Query(QString sqr);
+    bool DBS_GetColsName();     //获取列名
+
+
 
 
 public:

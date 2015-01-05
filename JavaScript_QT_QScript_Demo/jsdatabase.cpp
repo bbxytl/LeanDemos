@@ -16,15 +16,12 @@ bool JSDatabase::DBS_Close(){
     return true;
 }
 bool JSDatabase::DBS_Query(QString sqr){
-//        if(query.prepare(sqr)){
-//            query.exec();
-//            ls<<" 已-执行-查询信息";
-//            int n=query.size();
-//            ls<<QString(n);
-//        }
-    QSqlQuery query(sqr,dbs);
-//        if(query.prepare(sqr)){
-//            query.exec();
+
+    {
+        QSqlQuery qy(sqr,dbs);
+        query=qy;
+    }
+
         ls<<" 已-执行-查询信息";
         int n=query.size();
         ls<<QString(n);
@@ -32,7 +29,8 @@ bool JSDatabase::DBS_Query(QString sqr){
             ls << query.value(0).toString() +"   " + query.value(1).toString();
 
         }
+        n = query.size();
+        n++;
 
-//        }
 
 }

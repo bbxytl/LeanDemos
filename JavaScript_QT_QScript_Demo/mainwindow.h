@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
+
 #include "ahead.h"
 #include "jsdatabase.h"
-#include <QLabel>
+#include "jsdataset.h"
 
 namespace Ui {
 class MainWindow;
