@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui script
+QT       += core gui script axcontainer sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,12 +13,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    jsdatabase.cpp
 
 HEADERS  += mainwindow.h \
-    ahead.h
+    ahead.h \
+    jsdatabase.h
 
 FORMS    += mainwindow.ui
 
 OTHER_FILES += \
-    ../Build/JavaScript_QT_QScript_Demo-Debug/JSCode.js
+    ../Build/JavaScript_QT_QScript_Demo-Debug/JSCode.js \
+    ../Build/JavaScript_QT_QScript_Demo-Debug/JS_DBCon.js

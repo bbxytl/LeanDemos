@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page_preview">
        <layout class="QGridLayout" name="gridLayout">
@@ -71,6 +71,21 @@
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="page">
+       <widget class="QAxWidget" name="axWidget">
+        <property name="control" stdset="0">
+         <string>{8e27c92b-1264-101c-8a2f-040224009c02}</string>
+        </property>
+        <property name="geometry" stdset="0">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>411</width>
+          <height>371</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

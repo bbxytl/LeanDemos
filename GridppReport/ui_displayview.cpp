@@ -9,6 +9,7 @@ UI_DisPlayView::UI_DisPlayView(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("报表设计和预览");
+    ui->stackedWidget->setCurrentIndex(2);
 }
 
 UI_DisPlayView::~UI_DisPlayView()
@@ -28,12 +29,9 @@ void UI_DisPlayView::on_act_Disigner_triggered()
 
 void UI_DisPlayView::on_act_FunTest_triggered()
 {
-//    QString str=ui->axWidget_designer->dynamicCall("GetObjectName(int Index)",0).toString();
-//    DBG<<str;
 
 
-    ;
-    QAxObject * detailGrid=ui->axWidget_designer->querySubObject("DetailGrid");
+    QAxObject * report=ui->axWidget_designer->querySubObject("Report");
 //    detailGrid = *(QAxObject **)qax_result.constData();
 //    QAxObject * recordSet =detailGrid->querySubObject("Recordset");
 //    recordSet->dynamicCall("AddField(const QString, grproLib::tagGRFieldType)","Fwad",0);
@@ -46,5 +44,22 @@ void UI_DisPlayView::on_act_FunTest_triggered()
 ////    iface->DetailGrid();
 //        int i=0;
 //    }
+
+    /*Y*/QAxObject gridppReport(QString::fromUtf8(DC_GridppReport));
+    /*N*/QVariant detailGrid = gridppReport.dynamicCall("DetailGrid");
+
+    /*OK*/QAxObject *day=ui->axWidget->querySubObject("Value");
+
+
+
+    QAxWidget outlook("Outlook.Application");
+    QAxObject *session = outlook.querySubObject("Session");
+    if (session) {
+        QAxObject *defFolder = session->querySubObject(
+                                "GetDefaultFolder(OlDefaultFolders)",
+                                "olFolderContacts");
+    }
+
      int i=0;
+     i++;
 }

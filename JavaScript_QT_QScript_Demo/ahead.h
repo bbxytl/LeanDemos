@@ -2,6 +2,7 @@
 #define AHEAD_H
 
 #include <QObject>
+#include <QAxObject>
 
 #include <QDebug>
 #include <QString>
@@ -13,5 +14,10 @@
 #include <QScriptEngine>
 #include <QScriptValue>
 #include <QScriptValueList>
+
+
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlRecord>
 
 #endif // AHEAD_H

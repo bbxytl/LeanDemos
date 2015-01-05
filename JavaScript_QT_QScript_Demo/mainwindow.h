@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "ahead.h"
+#include "jsdatabase.h"
 #include <QLabel>
 
 namespace Ui {
@@ -45,25 +46,5 @@ private:
     QLabel * m_label; //状态栏显示状态
 };
 
-
-//测试使用的数据类
-class Mes:public QObject{   //类必须继承自 QObject
-    Q_OBJECT
-public:
-    explicit Mes(QObject * parent = 0):QObject(parent){
-    }
-    ~Mes(){}
-
-    Q_INVOKABLE QString GetMessage(){   //方法前必须要有 Q_INVOKABLE
-        return m_Text;
-    }
-    Q_INVOKABLE void SetMessage(QString text){
-        m_Text=text;
-    }
-
-private:
-    Q_INVOKABLE QString m_Text; //经测试，即使m_Text为public，也不能在JS里直接使用对象进行调用
-                                //所以使用 Get 和 Set 函数进行处理
-};
 
 #endif // MAINWINDOW_H

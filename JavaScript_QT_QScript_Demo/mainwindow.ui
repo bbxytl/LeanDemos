@@ -91,6 +91,9 @@
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
            <widget class="QSplitter" name="splitter">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -108,7 +111,7 @@
                 <item>
                  <widget class="QLineEdit" name="lineEdit_Fun">
                   <property name="text">
-                   <string>up2</string>
+                   <string/>
                   </property>
                  </widget>
                 </item>

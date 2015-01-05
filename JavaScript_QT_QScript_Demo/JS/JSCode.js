@@ -5,8 +5,12 @@ function func(a,b) {
 }
 
 function up2(){
-//    var msg="Hello world!";
-    var x=msg.ShowMessage();
-    x = msg.m_Text;
-    return x;
+    var x=pm.GetMessage();
+
+    var text="SetMessage the Text !";
+    pm.SetMessage(text);
+    var y=pm.GetMessage();
+
+    var z=x+"\n"+y;
+    return z;
 }

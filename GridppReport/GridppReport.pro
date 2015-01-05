@@ -14,18 +14,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    formtest.cpp \
     ui_displayview.cpp \
     Grid++ReportLib/gredes.cpp \
     Grid++ReportLib/gregn.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     ahead.h \
-    formtest.h \
     ui_displayview.h \
     Grid++ReportLib/gredes.h \
     Grid++ReportLib/gregn.h
 
-FORMS    += mainwindow.ui \
+FORMS    += \
     ui_displayview.ui
