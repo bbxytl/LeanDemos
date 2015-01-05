@@ -17,9 +17,16 @@ function GetDataSource()
     var sqls="select *from tblbill";
     pDS.SetList(sqls);
 
-    pDS.GetDBS().open( );
-    pDS.GetQuery().prepare(sqls);
-    pDS.GetDBS().close();
+//    pDS.DBS_Open();
+//    pDS.DBS_Query(sqls);
+//    pDS.DBS_Close();
+//    return "End"
+//    dbs.open();
+
+    var dbs=pDS.GetDBS();
+//    pDS.GetDBS().open( );
+//    pDS.GetQuery().prepare(sqls);
+//    pDS.GetDBS().close();
 
 }
 
