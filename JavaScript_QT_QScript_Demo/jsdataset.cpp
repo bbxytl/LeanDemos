@@ -2,30 +2,36 @@
 
 JSDataSet::JSDataSet(QObject *parent):QObject(parent)
 {
+    initClass();
+}
+
+JSDataSet::JSDataSet(const QString &con, QObject *parent):QObject(parent)
+{
+    initClass();
+    m_con=con;
+}
+
+JSDataSet::JSDataSet(const QString &con, const QString &sql, QObject *parent) :
+    QObject(parent)
+{
+    initClass();
+    m_sql=sql;
+    m_con=con;
+}
+
+JSDataSet::~JSDataSet()
+{
+    delete m_cusData;
+}
+
+void JSDataSet::initClass()
+{
     m_sql="";
     m_con="";
     m_informationls.clear();
     m_informationls.append("调用信息：");
     m_showInfor=false;
-}
-
-JSDataSet::JSDataSet(const QString &con, QObject *parent):QObject(parent)
-{
-    m_sql="";
-    m_con=con;
-    m_informationls.clear();
-    m_informationls.append("调用信息：");
-    m_showInfor=false;
-}
-
-JSDataSet::JSDataSet(const QString &con, const QString &sql, QObject *parent) :
-    QObject(parent),
-    m_sql(sql),
-    m_con(con)
-{
-    m_informationls.clear();
-    m_informationls.append("调用信息：");
-    m_showInfor=false;
+    m_cusData=new CustomDataSet();
 }
 
 void JSDataSet::open()
@@ -339,3 +345,5 @@ QStringList *JSDataSet::getInformationLs()
     }else
         return new QStringList();
 }
+
+

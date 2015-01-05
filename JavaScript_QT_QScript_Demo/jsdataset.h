@@ -2,6 +2,7 @@
 #define JSDATASET_H
 
 #include "ahead.h"
+#include "customdataset.h"
 
 #include <QObject>
 
@@ -14,7 +15,11 @@ public:
     explicit JSDataSet(const QString &con,
                        const QString &sql,
                        QObject *parent = 0);
-    ~JSDataSet(){}
+    ~JSDataSet();
+private:
+    void initClass();   //初始化属性字段
+
+public:
 
     //数据获取--包装方法
     Q_INVOKABLE void open();
@@ -72,8 +77,7 @@ public:
 
 
     //数据处理方法--自定义数据
-
-
+    void getCustomData();   //待处理
 
 signals:
 
@@ -91,6 +95,7 @@ private:
     QStringList  m_informationls;     //调用记录
     bool         m_showInfor;         //判断是否有权显示调用记录
 
+    CustomDataSet *m_cusData;          //存储处理好的数据
 
 };
 

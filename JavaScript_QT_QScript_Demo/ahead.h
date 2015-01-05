@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QString>
 #include <QStringList>
+#include <QDate>
 
 #include <QFile>
 #include <QTextStream>
@@ -20,5 +21,16 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+
+
+#include "ncreport.h"
+#include "ncreportoutput.h"
+#include "ncreportpreviewoutput.h"
+#include "ncreportpreviewwindow.h"
+
+#include "ncreportdef.h"
+#include "ncreportdatasource.h"
+#include <QtCore/private/qfsfileengine_p.h>
+
 
 #endif // AHEAD_H

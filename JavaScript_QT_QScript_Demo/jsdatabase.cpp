@@ -32,5 +32,5 @@ bool JSDatabase::DBS_Query(QString sqr){
         n = query.size();
         n++;
 
-
+    return true;
 }
