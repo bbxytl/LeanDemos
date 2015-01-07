@@ -4,6 +4,7 @@
 #include "ahead.h"
 #include "customdataset.h"
 
+
 #include <QObject>
 
 class JSDataSet : public QObject
@@ -40,7 +41,7 @@ public:
     Q_INVOKABLE bool isNull(int field);
     Q_INVOKABLE bool isNull(const QString & name);
     Q_INVOKABLE int  at();
-    Q_INVOKABLE void clear();
+    Q_INVOKABLE void clearQuery();
     Q_INVOKABLE bool first();
     Q_INVOKABLE bool last();
     Q_INVOKABLE bool next();
@@ -77,7 +78,26 @@ public:
 
 
     //数据处理方法--自定义数据
-    void getCustomData();   //待处理
+    CustomDataSet * getCustomDataObject();   //获取数据对象
+
+    Q_INVOKABLE void clearCustomData();
+
+    Q_INVOKABLE void addData(const QList<QVariantList> &datas );
+
+    Q_INVOKABLE void addCols(const QStringList &cols);
+    Q_INVOKABLE int  getColsCount( );    //获取列数
+    Q_INVOKABLE int  getRowsCount( );    //获取列数
+    Q_INVOKABLE void insertData(const QList<QVariant> &data,const int pos=-1);
+    Q_INVOKABLE void insertCol(const QString &columnName,const int pos=-1);
+
+    Q_INVOKABLE bool modifyData(int row, int col, const QVariant &data);
+    Q_INVOKABLE bool modifyCol(const int col, const QString &data);
+    Q_INVOKABLE bool modifyCol(const QString &colNameOld,
+                               const QString &colNameNew);
+    Q_INVOKABLE void setID(const QString &dsid);    //设置数据前要先设置这个
+
+    Q_INVOKABLE void clear();       //清除上一次的数据、查询、调用信息
+
 
 signals:
 
@@ -95,7 +115,7 @@ private:
     QStringList  m_informationls;     //调用记录
     bool         m_showInfor;         //判断是否有权显示调用记录
 
-    CustomDataSet *m_cusData;          //存储处理好的数据
+    CustomDataSet *m_custData;          //存储处理好的数据
 
 };
 

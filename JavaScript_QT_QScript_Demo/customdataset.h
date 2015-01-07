@@ -1,9 +1,12 @@
-#ifndef CUSTOMDATASET_H
-#define CUSTOMDATASET_H
+#ifndef CustomDataSet_H
+#define CustomDataSet_H
 
 #include "ahead.h"
+#include <QDate>
 
-typedef QList<QVariant> DATA_2;
+
+
+typedef QList<QVariant> QVariantList;
 
 class CustomDataSet : public NCReportDataSource
 {
@@ -12,11 +15,19 @@ public:
     CustomDataSet( QObject *parent=0 );
     ~CustomDataSet();
 
-    void addData(const QList<DATA_2> &datas );   //add the datas to DataSource
+    void addData(const QList<QVariantList> &datas );   //add the datas to DataSource
     void addCols(const QStringList &cols);     //add the cols to DataSource
 
     void insertData(const QList<QVariant> &data,const int pos=-1);   //add one data
     void insertCol(const QString &columnName,const int pos=-1);      //add one col
+
+    bool modifyData( int row, int col, const QVariant &data);
+    bool modifyCol(const int col, const QString &data);
+    bool modifyCol(const QString &colNameOld, const QString &colNameNew);
+
+
+    QList<QVariantList> * getCustomData();
+    void clear();
 
     bool open();
     bool close();
@@ -35,13 +46,13 @@ public:
     bool isValid() const;
     int columnIndexByName(const QString& columnname) const;
     int columnCount() const;
+    int rowCount() const;
     QString columnName(int column) const;
 
 
 private:
-    QList<DATA_2> m_data;        //save the all data(all Type)
+    QList<QVariantList> m_lsVar;        //save the all data(all Type)
     QStringList m_colName;      //save the colName of the data
-
 };
 
-#endif // CUSTOMDATASET_H
+#endif // CustomDataSet_H

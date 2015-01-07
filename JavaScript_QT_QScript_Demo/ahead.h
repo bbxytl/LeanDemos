@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QString>
 #include <QStringList>
+#include <QVariantList>
 #include <QDate>
 
 #include <QFile>

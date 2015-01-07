@@ -2,6 +2,8 @@
 #define JSDATABASE_H
 #include "ahead.h"
 
+//测试时使用的类----已废弃
+
 class JSDatabase:public QObject{
 
     Q_OBJECT

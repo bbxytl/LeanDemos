@@ -1,3 +1,7 @@
+
+
+//测试时使用的类----已废弃
+
 #include "jsdatabase.h"
 
 

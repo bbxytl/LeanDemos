@@ -1,26 +1,58 @@
 function GetDataSource()
 {
 
-    var sqls="select * from tblbill";
-//JSDataSetÀàµÄµ÷ÓÃ·½·¨
+    var sqls="select  top 50  \
+                Code as 'id',  \
+                Name as 'name',\
+                Spec as 'test', \
+                Code as 'ç¼–å·',  \
+                Name as 'æ•°æ®',\
+                Spec as 'æµ‹è¯•' \
+            from tblBill";
+//JSDataSetç±»
+
+    pds.setID("cds0");
+
+//  è‹±æ–‡
+    pds.insertCol("id");
+    pds.insertCol("name");
+    pds.insertCol("test");
+//  ä¸­æ–‡
+    pds.insertCol("ç¼–å·");
+    pds.insertCol("daf");
+    pds.insertCol("æµ‹è¯•");
+    
+    pds.modifyCol(4,"ä¿®æ”¹åˆ—å-1");
+    pds.modifyCol("ä¿®æ”¹åˆ—å-1","æ•°æ®");
+
     pds.open();
     pds.query(sqls);
     var count=0;
     var rs="The result of Query:";
-    rs=rs+"\n"+"ĞòºÅ   Êı¾İ-------------------"+"\n";
+    rs=rs+"\n"+"åºå·   æ•°æ®-------------------"+"\n";
     while(pds.next()){
+
+        var dt=new Array();
+        //è®°å½•æ•°æ®
         rs=rs+(++count)+"    "
                 +pds.value(0)+"   "
                 +pds.value(1)+"\n";
-    }
-    rs=rs+"¹²ÓĞ "+count+ " ÌõÊı¾İ"+"\n";
+        for(var i=0;i<pds.getColsCount();i++){
+            dt.push(pds.value(i));
+        }
+        pds.insertData(dt);
 
-    pds.setIsShowInformation(true);
+    }
+    pds.modifyData("modifyDataTest",pds.getRowsCount()-1,pds.getColsCount()-1);
+    rs=rs+"å…±æœ‰ "+count+ " æ¡æ•°æ®"+"\n";
+
+
+    pds.setIsShowInformation(false);    //ä¸æ˜¾ç¤ºå‡½æ•°è°ƒç”¨ä¿¡æ¯
     pds.close();
     return rs;
 
 
-//JSDatabaseÀàµÄµ÷ÓÃ·½·¨
+//JSDatabaseç±»è°ƒç”¨æ–¹æ³•
 //    pDS.SetList(sqls);
 
 //    if(pDS.DBS_Open())
@@ -34,58 +66,5 @@ function GetDataSource()
 //    pDS.DBS_Close();
 
 
-//inserttable();
-//    var conn=new ActiveXObject("ADODB.Connection");
-//    var rs=new ActiveXObject("ADODB.Recordset");
-//    var sqls="select *from FBTreeData";
-//    conn.Open("s4");
-//    rs.open(sqls,conn);
-//    pDS.GetDataSource(rs.GetRows());
-////  while(!rs.eof)
-////  {
-////      rs.MoveNext;
-////  }
-//    conn.close();
-//    rs.close();
-
-//    return "End"
-//    dbs.open();
-
-//    var dbs=pDS.GetDBS();
-//    pDS.GetDBS().open( );
-//    pDS.GetQuery().prepare(sqls);
-//    pDS.GetDBS().close();
-
-
 }
 
-
-
-//Other Functions
-function createtable()
-{
-	var conn=new ActiveXObject("ADODB.Connection"); 
-	var createsql="create table [curenTable] ([ID] INTEGER PRIMARY KEY,[NUM] TEXT,[NAME] TEXT)";
-	conn.Open("s4");
-	conn.execute(createsql);
-	conn.close();
-}
-
-function inserttable()
-{
-	var conn=new ActiveXObject("ADODB.Connection"); 
-	conn.Open("s4");
-	conn.execute("insert into curenTable(num,name) values('abc','kobebryant')");
-	conn.execute("insert into curenTable(num,name) values('abd','okc')");
-	conn.execute("insert into curenTable(num,name) values('abe','lb')");
-	conn.close();
-}
-
-function droptable()
-{
-	var conn=new ActiveXObject("ADODB.Connection"); 
-	conn.Open("s4");
-	conn.execute("delete from curenTable");
-	conn.execute("drop table curenTable");
-	conn.close();
-}

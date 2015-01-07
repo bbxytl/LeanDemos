@@ -21,7 +21,7 @@ JSDataSet::JSDataSet(const QString &con, const QString &sql, QObject *parent) :
 
 JSDataSet::~JSDataSet()
 {
-    delete m_cusData;
+    delete m_custData;
 }
 
 void JSDataSet::initClass()
@@ -31,7 +31,7 @@ void JSDataSet::initClass()
     m_informationls.clear();
     m_informationls.append("调用信息：");
     m_showInfor=false;
-    m_cusData=new CustomDataSet();
+    m_custData=new CustomDataSet();
 }
 
 void JSDataSet::open()
@@ -105,6 +105,7 @@ QStringList JSDataSet::connectionNames()
 bool JSDataSet::query()
 {
     QSqlQuery qy(m_sql,m_dbs);
+    m_query.clear();
     m_query=qy;
     m_informationls.append("Query is going ...");
     if(m_query.lastError().isValid())return false;
@@ -163,7 +164,7 @@ int JSDataSet::at()
     return m_query.at();
 }
 
-void JSDataSet::clear()
+void JSDataSet::clearQuery()
 {
     m_informationls.append("Call Query clear() .");
     m_query.clear();
@@ -344,6 +345,73 @@ QStringList *JSDataSet::getInformationLs()
         return &m_informationls;
     }else
         return new QStringList();
+}
+
+CustomDataSet *JSDataSet::getCustomDataObject()
+{
+    return m_custData;
+}
+
+void JSDataSet::clearCustomData()
+{
+    m_custData->clear();
+}
+
+void JSDataSet::addData(const QList<QVariantList> &datas)
+{
+    m_custData->addData(datas);
+}
+
+void JSDataSet::addCols(const QStringList &cols)
+{
+    m_custData->addCols(cols);
+}
+
+int JSDataSet::getColsCount()
+{
+    return m_custData->columnCount();
+}
+
+int JSDataSet::getRowsCount()
+{
+    return m_custData->rowCount();
+}
+
+void JSDataSet::insertData(const QList<QVariant> &data, const int pos)
+{
+    m_custData->insertData(data,pos);
+}
+
+void JSDataSet::insertCol(const QString &columnName, const int pos)
+{
+    m_custData->insertCol(columnName,pos);
+}
+
+bool JSDataSet::modifyData( int row, int col,const QVariant &data)
+{
+    return m_custData->modifyData(row,col,data);
+}
+
+bool JSDataSet::modifyCol(const int col,const QString &data )
+{
+    return m_custData->modifyCol(col,data);
+}
+
+bool JSDataSet::modifyCol(const QString &colNameOld, const QString &colNameNew)
+{
+    return m_custData->modifyCol(colNameOld,colNameNew);
+}
+
+void JSDataSet::setID(const QString &dsid)
+{
+    m_custData->setID(dsid);
+}
+
+void JSDataSet::clear()
+{
+    clearCustomData();
+    clearQuery();
+    clearInformationLs();
 }
 
 

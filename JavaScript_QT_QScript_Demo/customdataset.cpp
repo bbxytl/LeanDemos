@@ -1,6 +1,7 @@
 #include "customdataset.h"
 
 
+
 CustomDataSet::CustomDataSet(QObject * parent) : NCReportDataSource( parent )
 {
     setDataSourceType(Custom);
@@ -10,12 +11,12 @@ CustomDataSet::CustomDataSet(QObject * parent) : NCReportDataSource( parent )
 
 CustomDataSet::~ CustomDataSet()
 {
-    m_data.clear();
+    m_lsVar.clear();
 }
 
 bool CustomDataSet::open()
 {
-    if ( m_data.isEmpty() ) {
+    if ( m_lsVar.isEmpty() ) {
         error()->setError(QString("No data in CustomDataSet datasource") );
         return false;
     }
@@ -33,10 +34,9 @@ bool CustomDataSet::close()
 
 bool CustomDataSet::next()
 {
-    return true;
     recno()++;
 
-    if ( recno() >= m_data.count() ) {
+    if ( recno() >= m_lsVar.count() ) {
         recno()--;
         flagEnd() = true;
         return false;
@@ -47,7 +47,7 @@ bool CustomDataSet::next()
 
 int CustomDataSet::size() const
 {
-    return m_data.count();
+    return m_lsVar.count();
 }
 
 bool CustomDataSet::previous()
@@ -70,7 +70,7 @@ bool CustomDataSet::first()
 
 bool CustomDataSet::last()
 {
-    recno() = m_data.count()-1;
+    recno() = m_lsVar.count()-1;
     return true;
 }
 
@@ -87,8 +87,16 @@ QVariant CustomDataSet::value(const QString & column, bool* ok, int i ) const
 QVariant CustomDataSet::value( int column, bool*, int ) const
 {
     QVariant v;
-    if(column<m_data.at(recno()).size())
-        v=m_data.at(recno()).at(column);
+//    switch (column) {
+//        case 0: v = m_lsVar.at(recno()); break;
+//        case 1: v = m_lsVar.at(recno()); break;
+//        case 2: v = m_lsVar.at(recno()); break;
+//        case 3: v = m_lsVar.at(recno()); break;
+//        case 4: v = m_lsVar.at(recno()); break;
+//    }
+    if(column<m_lsVar.at(recno()).size())
+//    if(column<m_colName.size())
+        v=m_lsVar.at(recno()).at(column);
     return v;
 }
 
@@ -111,20 +119,20 @@ void CustomDataSet::evaluate(NCReportEvaluator *)
 {
 }
 
-void CustomDataSet::addData(const QList<DATA_2> &datas)
+void CustomDataSet::addData(const QList<QVariantList> &datas)
 {
-    foreach (DATA_2 da, datas) {
-        m_data.append( da );
+    foreach (QVariantList da, datas) {
+        m_lsVar.append( da );
     }
 
 }
 
 void CustomDataSet::insertData(const QList<QVariant> &data, const int pos)
 {
-    if(pos!=-1 && pos<m_data.size())
-        m_data.insert(pos,data);
+    if(pos!=-1 && pos<m_lsVar.size())
+        m_lsVar.insert(pos,data);
     else
-        m_data.append(data);
+        m_lsVar.append(data);
 }
 
 void CustomDataSet::insertCol(const QString &columnName, const int pos)
@@ -133,6 +141,51 @@ void CustomDataSet::insertCol(const QString &columnName, const int pos)
         m_colName.insert(pos,columnName);
     else
         m_colName.append(columnName);
+}
+
+bool CustomDataSet::modifyData(int row, int col, const QVariant &data)
+{
+    if(row<0||row>rowCount())return false;
+    if(col<0||col>columnCount())return false;
+    QVariantList tmp=m_lsVar.at(row);
+    tmp.replace(col,data);
+    m_lsVar.replace(row,tmp);
+
+//    QList<QVariantList>::Iterator it=m_lsVar.begin();
+//    for(int i=0;i<row;++i){
+//        ++it;
+//    }
+//    QList<QVariant>::Iterator itData=*it;
+//    for(int i=0;i<col;++i){
+//        it
+    //    }
+}
+
+bool CustomDataSet::modifyCol( const int col, const QString &data)
+{
+    if(col<0||col>columnCount())return false;
+    m_colName.replace(col,data);
+}
+
+bool CustomDataSet::modifyCol(const QString &colNameOld,
+                              const QString &colNameNew)
+{
+    unsigned int sz=m_colName.size();
+    for(int i=0;i<sz;++i) {
+        if(colNameOld==m_colName.at(i))
+            m_colName.replace(i,colNameNew);
+    }
+}
+
+QList<QVariantList> *CustomDataSet::getCustomData()
+{
+    return &m_lsVar;
+}
+
+void CustomDataSet::clear()
+{
+    m_lsVar.clear();
+    m_colName.clear();
 }
 
 void CustomDataSet::addCols(const QStringList &cols)
@@ -144,7 +197,7 @@ void CustomDataSet::addCols(const QStringList &cols)
 
 bool CustomDataSet::hasNext()
 {
-    return (recno()<m_data.count()-1);
+    return (recno()<m_lsVar.count()-1);
 }
 
 bool CustomDataSet::seek( int index )
@@ -152,11 +205,11 @@ bool CustomDataSet::seek( int index )
     bool ok=true;
     if ( index == -1 )
         recno() =0;
-    else if ( index < m_data.count())
+    else if ( index < m_lsVar.count())
         recno() = index;
     else
     {
-        recno() = m_data.count()-1;
+        recno() = m_lsVar.count()-1;
         ok=false;
     }
 
@@ -165,7 +218,8 @@ bool CustomDataSet::seek( int index )
 
 int CustomDataSet::columnIndexByName(const QString &columnname) const
 {
-    for (int i=0; i<columnCount(); i++) {
+    unsigned int sz=columnCount();
+    for (int i=0; i<sz; i++) {
         if (columnname==columnName(i))
             return i;
     }
@@ -178,10 +232,24 @@ int CustomDataSet::columnCount() const
     return m_colName.size();
 }
 
+int CustomDataSet::rowCount() const
+{
+    return m_lsVar.size();
+}
+
 QString CustomDataSet::columnName(int column) const
 {
+//    switch(column) {
+//    case 0: return "id";
+//    case 1: return "name";
+//    case 2: return "address";
+//    case 3: return "valid";
+//    case 4: return "date";
+//    }
     if(column<m_colName.size())
         return m_colName.at(column);
 
     return QString();
 }
+
+
