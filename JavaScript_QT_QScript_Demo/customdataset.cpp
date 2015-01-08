@@ -143,7 +143,14 @@ void CustomDataSet::insertCol(const QString &columnName, const int pos)
         m_colName.append(columnName);
 }
 
-bool CustomDataSet::modifyData(int row, int col, const QVariant &data)
+QVariant CustomDataSet::getData(const int row, const int col)
+{
+    if(row<0||row>rowCount())return QVariant();
+    if(col<0||col>columnCount())return QVariant();
+    return m_lsVar.at(row).at(col);
+}
+
+bool CustomDataSet::modifyData(const int row, const int col, const QVariant &data)
 {
     if(row<0||row>rowCount())return false;
     if(col<0||col>columnCount())return false;

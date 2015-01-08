@@ -16,19 +16,22 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     jsdatabase.cpp \
     jsdataset.cpp \
-    customdataset.cpp
+    customdataset.cpp \
+    jsdbobject.cpp
 
 HEADERS  += mainwindow.h \
     ahead.h \
     jsdatabase.h \
     jsdataset.h \
-    customdataset.h
+    customdataset.h \
+    jsdbobject.h
 
 FORMS    += mainwindow.ui
 
 OTHER_FILES += \
     ../Build/JavaScript_QT_QScript_Demo-Debug/JSCode.js \
-    ../Build/JavaScript_QT_QScript_Demo-Debug/JS_DBCon.js
+    ../Build/JavaScript_QT_QScript_Demo-Debug/JS_DBCon.js \
+    ../Build/JavaScript_QT_QScript_Demo-Debug/JS_DB_GCLQD.js
 
 
 #添加库文件路��?

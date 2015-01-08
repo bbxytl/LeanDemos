@@ -6,6 +6,7 @@
 
 #include "ahead.h"
 #include "jsdatabase.h"
+#include "jsdbobject.h"
 #include "jsdataset.h"
 
 
@@ -33,15 +34,18 @@ private slots:
 
     void on_pushButton_Save_clicked();
 
+    void Test();
+
     void on_action_Run_triggered();
 
     void on_action_Pre_triggered();
 
     void on_action_Clear_triggered();
 
+
 private:
     void EnableControl(bool bf);  //设置部分控件的可用性
-    void setCustomData();
+    void setCustomData(int customDataId);
 
 private:
     Ui::MainWindow *ui;
@@ -56,7 +60,31 @@ private:
     NCReport      * m_report;
 //    CustomDataSet * m_dataSet;
     JSDataSet     * m_js;
+    JSDBObject    * m_objects;
 };
 
+
+template <typename Tp>
+QScriptValue qScriptValueFromQObject(QScriptEngine *engine, Tp const
+&qobject)
+{
+   return engine->newQObject(qobject);
+}
+
+template <typename Tp>
+void qScriptValueToQObject(const QScriptValue &value, Tp &qobject)
+{ qobject = qobject_cast<Tp>(value.toQObject());
+}
+
+template <typename Tp>
+int qScriptRegisterQObjectMetaType(
+   QScriptEngine *engine,
+   const QScriptValue &prototype = QScriptValue()
+   , Tp = 0
+   )
+{
+   return qScriptRegisterMetaType<Tp>(engine, qScriptValueFromQObject,
+                                      qScriptValueToQObject, prototype);
+}
 
 #endif // MAINWINDOW_H

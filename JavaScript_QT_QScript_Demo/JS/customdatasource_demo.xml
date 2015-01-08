@@ -45,11 +45,11 @@
         <detail id="Detail1" height="16.669" autoHeight="true" hideIfBlank="true" datasource="cds0">
             <items>
                 <field id="DBL4Q" zValue="0" posX="1.587" posY="0.000" width="17.727" height="5.027" description="序列" resource="datasource" fontName="Arial" fontSize="10" alignment="1" type="txt" ftype="ds">id</field>
-                <field id="D8AZU" zValue="1" posX="52.387" posY="0.000" width="25.400" height="4.762" resource="datasource" autoHeight="true" fontName="Arial" fontSize="10" alignment="1" wordbreak="true" type="txt" ftype="ds">test</field>
+                <field id="D8AZU" zValue="1" posX="53.975" posY="0.000" width="25.400" height="4.762" resource="datasource" autoHeight="true" fontName="Arial" fontSize="10" alignment="1" wordbreak="true" type="txt" ftype="ds">test</field>
                 <field id="4K6A2" zValue="2" posX="20.637" posY="0.000" width="31.750" height="5.027" resource="datasource" fontName="Arial" fontSize="10" alignment="1" type="txt" ftype="ds">name</field>
-                <field id="XLK9N" zValue="3" posX="101.600" posY="0.000" width="31.750" height="5.027" resource="datasource" fontName="Arial" fontSize="10" type="txt" ftype="ds">数据</field>
+                <field id="XLK9N" zValue="3" posX="107.950" posY="0.000" width="31.750" height="5.027" resource="datasource" fontName="Arial" fontSize="10" type="txt" ftype="ds">数据</field>
                 <field id="0A0WY" zValue="4" posX="84.137" posY="0.000" width="17.727" height="5.027" resource="datasource" fontName="Arial" fontSize="10" type="txt" ftype="ds">编号</field>
-                <field id="WZSO3" zValue="5" posX="133.350" posY="0.000" width="25.400" height="4.762" resource="datasource" autoHeight="true" fontName="Arial" fontSize="10" wordbreak="true" type="txt" ftype="ds">测试</field>
+                <field id="WZSO3" zValue="5" posX="144.463" posY="0.000" width="25.400" height="4.762" resource="datasource" autoHeight="true" fontName="Arial" fontSize="10" wordbreak="true" type="txt" ftype="ds">测试</field>
                 <line id="2JTAQ" zValue="6" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fitTo="zone" fromX="80.962" fromY="0.000" toX="80.962" toY="4.762"/>
             </items>
         </detail>

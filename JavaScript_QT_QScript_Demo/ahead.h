@@ -11,6 +11,7 @@
 #include <QDate>
 
 #include <QFile>
+#include <QHash>
 #include <QTextStream>
 
 #include <QScriptEngine>

@@ -90,7 +90,8 @@ public:
     Q_INVOKABLE void insertData(const QList<QVariant> &data,const int pos=-1);
     Q_INVOKABLE void insertCol(const QString &columnName,const int pos=-1);
 
-    Q_INVOKABLE bool modifyData(int row, int col, const QVariant &data);
+    Q_INVOKABLE QVariant getData(const int row,const int col);
+    Q_INVOKABLE bool modifyData(const int row, const int col, const QVariant &data);
     Q_INVOKABLE bool modifyCol(const int col, const QString &data);
     Q_INVOKABLE bool modifyCol(const QString &colNameOld,
                                const QString &colNameNew);
@@ -118,5 +119,9 @@ private:
     CustomDataSet *m_custData;          //存储处理好的数据
 
 };
+
+//Q_SCRIPT_DECLARE_QMETAOBJECT(JSDataSet, QObject*)
+//Q_DECLARE_METATYPE(JSDataSet);
+Q_DECLARE_METATYPE(JSDataSet*)
 
 #endif // JSDATASET_H

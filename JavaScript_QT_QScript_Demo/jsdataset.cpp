@@ -387,7 +387,12 @@ void JSDataSet::insertCol(const QString &columnName, const int pos)
     m_custData->insertCol(columnName,pos);
 }
 
-bool JSDataSet::modifyData( int row, int col,const QVariant &data)
+QVariant JSDataSet::getData(const int row, const int col)
+{
+    return m_custData->getData(row,col);
+}
+
+bool JSDataSet::modifyData(const int row,const int col,const QVariant &data)
 {
     return m_custData->modifyData(row,col,data);
 }

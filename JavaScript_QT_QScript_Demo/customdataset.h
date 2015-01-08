@@ -21,7 +21,8 @@ public:
     void insertData(const QList<QVariant> &data,const int pos=-1);   //add one data
     void insertCol(const QString &columnName,const int pos=-1);      //add one col
 
-    bool modifyData( int row, int col, const QVariant &data);
+    QVariant getData(const int row, const int col);
+    bool modifyData(const int row, const int col, const QVariant &data);
     bool modifyCol(const int col, const QString &data);
     bool modifyCol(const QString &colNameOld, const QString &colNameNew);
 
