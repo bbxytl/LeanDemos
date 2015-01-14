@@ -152,36 +152,40 @@ QVariant CustomDataSet::getData(const int row, const int col)
 
 bool CustomDataSet::modifyData(const int row, const int col, const QVariant &data)
 {
-    if(row<0||row>rowCount())return false;
-    if(col<0||col>columnCount())return false;
-    QVariantList tmp=m_lsVar.at(row);
-    tmp.replace(col,data);
-    m_lsVar.replace(row,tmp);
-
-//    QList<QVariantList>::Iterator it=m_lsVar.begin();
-//    for(int i=0;i<row;++i){
-//        ++it;
-//    }
-//    QList<QVariant>::Iterator itData=*it;
-//    for(int i=0;i<col;++i){
-//        it
-    //    }
+    try{
+        if(row<0||row>rowCount())return false;
+        if(col<0||col>columnCount())return false;
+        QVariantList tmp=m_lsVar.at(row);
+        tmp.replace(col,data);
+        m_lsVar.replace(row,tmp);
+    }catch(...)
+    {
+        return false;
+    }
+    return true;
 }
 
 bool CustomDataSet::modifyCol( const int col, const QString &data)
 {
     if(col<0||col>columnCount())return false;
     m_colName.replace(col,data);
+    return true;
 }
 
 bool CustomDataSet::modifyCol(const QString &colNameOld,
                               const QString &colNameNew)
 {
-    unsigned int sz=m_colName.size();
-    for(int i=0;i<sz;++i) {
-        if(colNameOld==m_colName.at(i))
-            m_colName.replace(i,colNameNew);
+    try{
+        unsigned int sz=m_colName.size();
+        for(unsigned int i=0;i<sz;++i) {
+            if(colNameOld==m_colName.at(i))
+                m_colName.replace(i,colNameNew);
+        }
+    }catch(...)
+    {
+        return false;
     }
+    return true;
 }
 
 QList<QVariantList> *CustomDataSet::getCustomData()
@@ -226,7 +230,7 @@ bool CustomDataSet::seek( int index )
 int CustomDataSet::columnIndexByName(const QString &columnname) const
 {
     unsigned int sz=columnCount();
-    for (int i=0; i<sz; i++) {
+    for (unsigned int i=0; i<sz; ++i) {
         if (columnname==columnName(i))
             return i;
     }
