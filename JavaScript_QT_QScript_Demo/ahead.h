@@ -35,4 +35,27 @@
 #include <QtCore/private/qfsfileengine_p.h>
 
 
+// 向JS引擎里注册类---模板
+template <typename Tp>
+QScriptValue qScriptValueFromQObject(QScriptEngine *engine, Tp const &qobject)
+{
+   return engine->newQObject(qobject);
+}
+
+template <typename Tp>
+void qScriptValueToQObject(const QScriptValue &value, Tp &qobject)
+{ qobject = qobject_cast<Tp>(value.toQObject());
+}
+
+template <typename Tp>
+int qScriptRegisterQObjectMetaType(
+   QScriptEngine *engine,
+   const QScriptValue &prototype = QScriptValue()
+   , Tp = 0
+   )
+{
+   return qScriptRegisterMetaType<Tp>(engine, qScriptValueFromQObject,
+                                      qScriptValueToQObject, prototype);
+}
+
 #endif // AHEAD_H

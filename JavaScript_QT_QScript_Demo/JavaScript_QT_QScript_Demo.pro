@@ -14,17 +14,19 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    jsdatabase.cpp \
     jsdataset.cpp \
     customdataset.cpp \
-    jsdbobject.cpp
+    jsdbobject.cpp \
+    old/jsdatabase.cpp \
+    STL/stldataset.cpp
 
 HEADERS  += mainwindow.h \
     ahead.h \
-    jsdatabase.h \
     jsdataset.h \
     customdataset.h \
-    jsdbobject.h
+    jsdbobject.h \
+    old/jsdatabase.h \
+    STL/stldataset.h
 
 FORMS    += mainwindow.ui
 

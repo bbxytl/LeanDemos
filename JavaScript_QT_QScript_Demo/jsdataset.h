@@ -23,7 +23,7 @@ private:
 public:
 
     //数据获取--包装方法
-    Q_INVOKABLE void open();
+    Q_INVOKABLE bool open();
     Q_INVOKABLE void close();
     Q_INVOKABLE bool isOpen();
     Q_INVOKABLE bool isClose();
@@ -54,19 +54,17 @@ public:
     Q_INVOKABLE QString value(int index) ;
     Q_INVOKABLE QString value(const QString & name) ;
 
+    Q_INVOKABLE double valueToDouble(int index) ;
+    Q_INVOKABLE double valueToDouble(const QString & name) ;
+
     Q_INVOKABLE QString     lastQuery() ;
     Q_INVOKABLE QSqlError   lastError() ;
 
     Q_INVOKABLE void setConString(const QString & con);    //设置链接字符串
     Q_INVOKABLE void setSqlString(const QString & sql);    //设置SQL语句
     Q_INVOKABLE void setDatabase(const QString &conType,   //添加数据链接
-                                 const QString &conName);
+                                 const QString &conName="default");
     Q_INVOKABLE void removeDatabase(const QString & conName);   //移除数据链接
-
-    Q_INVOKABLE void    clearInformationLs();
-    Q_INVOKABLE void    setIsShowInformation(bool bl);
-    Q_INVOKABLE bool    getIsShowInformation( );
-    Q_INVOKABLE QString getInformationString(const QString &delimiter); //获取调用信息
 
     Q_INVOKABLE QString   getSqlString();     //获取Sql语句
     Q_INVOKABLE QString   getConString();     //获取链接字符串
@@ -74,7 +72,6 @@ public:
     QSqlDatabase *  getDatabaseObject();//获取数据库链接对象
     QSqlQuery    *  getQueryObject();   //获取数据处理对象
     QVariant        getValue();
-    QStringList  *  getInformationLs(); //获取调用信息
 
 
     //数据处理方法--自定义数据
@@ -95,16 +92,20 @@ public:
     Q_INVOKABLE bool modifyCol(const int col, const QString &data);
     Q_INVOKABLE bool modifyCol(const QString &colNameOld,
                                const QString &colNameNew);
-    Q_INVOKABLE void setID(const QString &dsid);    //设置数据前要先设置这个
+    Q_INVOKABLE void setID(const QString &dsid);    //设置数据前要先设置这个,数据源ID
 
     Q_INVOKABLE void clear();       //清除上一次的数据、查询、调用信息
 
+    Q_INVOKABLE void setObjectId(int objectid);    //创建类对象时对应的对象id编号
+    Q_INVOKABLE int getObjectId();
 
 signals:
 
 public slots:
 
 private:
+
+    int          m_objectId;
     QSqlDatabase m_dbs;     //数据库对象
     QSqlQuery    m_query;   //处理语句
 
@@ -113,15 +114,13 @@ private:
 
     QVariant     m_value; //存储
 
-    QStringList  m_informationls;     //调用记录
-    bool         m_showInfor;         //判断是否有权显示调用记录
-
     CustomDataSet *m_custData;          //存储处理好的数据
 
 };
 
 //Q_SCRIPT_DECLARE_QMETAOBJECT(JSDataSet, QObject*)
-//Q_DECLARE_METATYPE(JSDataSet);
+//Q_DECLARE_METATYPE(JSDataSet)
+
 Q_DECLARE_METATYPE(JSDataSet*)
 
 #endif // JSDATASET_H

@@ -7,6 +7,7 @@ JSDBObject::JSDBObject(QObject *parent) :
     m_curObjectId =0;
     m_hashID        = new QHash<int,int>();
     m_hashObjects   = new QHash<int,JSDataSet*>();
+    m_template=" ";
 }
 
 JSDBObject::~JSDBObject()
@@ -17,15 +18,22 @@ JSDBObject::~JSDBObject()
         delete m_hashObjects->value(key);
     }
     delete m_hashObjects;
+    qDebug()<<("表清空！");
 }
 
-int JSDBObject::creatDataSetObject(int parentID)
+JSDataSet * JSDBObject::creatDataSetObject(int parentID)
 {
+    qDebug()<<"创建前 m_autoId= "<<m_autoId;
+    qDebug()<<"创建前 表中有对象个数： "<<m_hashObjects->size();
     ++m_autoId;
     m_hashID->insert(m_autoId,parentID);
     JSDataSet * jsds=new JSDataSet();
     m_hashObjects->insert(m_autoId,jsds);
-    return m_autoId;
+    jsds->setObjectId(m_autoId);
+    qDebug()<<("创建了一个JSDataSet对象，编号为：")<<m_autoId
+              <<"此时表中有对象个数： "<<m_hashObjects->size();
+    qDebug()<<"创建前 m_autoId= "<<m_autoId;
+    return jsds;
 }
 
 int JSDBObject::getCurDSObjectID()
@@ -104,6 +112,16 @@ void JSDBObject::clear()
         delete m_hashObjects->value(key);
     }
     m_hashObjects->clear();
+}
+
+QString JSDBObject::getTemplate()
+{
+    return m_template;
+}
+
+void JSDBObject::setTemplate(QString templateName)
+{
+    m_template=templateName;
 }
 
 int JSDBObject::autoID()

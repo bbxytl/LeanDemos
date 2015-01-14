@@ -5,7 +5,7 @@
 #include <QLabel>
 
 #include "ahead.h"
-#include "jsdatabase.h"
+//#include "old\jsdatabase.h"
 #include "jsdbobject.h"
 #include "jsdataset.h"
 
@@ -59,32 +59,10 @@ private:
 
     NCReport      * m_report;
 //    CustomDataSet * m_dataSet;
-    JSDataSet     * m_js;
     JSDBObject    * m_objects;
+    QScriptValue    m_global;
 };
 
 
-template <typename Tp>
-QScriptValue qScriptValueFromQObject(QScriptEngine *engine, Tp const
-&qobject)
-{
-   return engine->newQObject(qobject);
-}
-
-template <typename Tp>
-void qScriptValueToQObject(const QScriptValue &value, Tp &qobject)
-{ qobject = qobject_cast<Tp>(value.toQObject());
-}
-
-template <typename Tp>
-int qScriptRegisterQObjectMetaType(
-   QScriptEngine *engine,
-   const QScriptValue &prototype = QScriptValue()
-   , Tp = 0
-   )
-{
-   return qScriptRegisterMetaType<Tp>(engine, qScriptValueFromQObject,
-                                      qScriptValueToQObject, prototype);
-}
 
 #endif // MAINWINDOW_H
