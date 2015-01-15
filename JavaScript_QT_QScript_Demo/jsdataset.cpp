@@ -185,6 +185,18 @@ QString JSDataSet::value(const QString &name)
     return m_value.toString();
 }
 
+int JSDataSet::valueToInt(int index)
+{
+    m_value=m_query.value(index);
+    return m_value.toInt();
+}
+
+int JSDataSet::valueToInt(const QString &name)
+{
+    m_value=m_query.value(name);
+    return m_value.toInt();
+}
+
 double JSDataSet::valueToDouble(int index)
 {
     m_value=m_query.value(index);

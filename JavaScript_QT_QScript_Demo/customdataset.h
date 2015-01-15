@@ -8,6 +8,11 @@
 
 typedef QList<QVariant> QVariantList;
 
+typedef struct KeyRowData{
+    unsigned int row;
+    unsigned int child;
+}KeyRow;
+
 class CustomDataSet : public NCReportDataSource
 {
     Q_OBJECT
@@ -25,6 +30,7 @@ public:
     bool modifyData(const int row, const int col, const QVariant &data);
     bool modifyCol(const int col, const QString &data);
     bool modifyCol(const QString &colNameOld, const QString &colNameNew);
+
 
 
     QList<QVariantList> * getCustomData();
@@ -54,6 +60,8 @@ public:
 private:
     QList<QVariantList> m_lsVar;        //save the all data(all Type)
     QStringList m_colName;      //save the colName of the data
+
+//    QHash<int,KeyRow> m_keyRow;
 };
 
 #endif // CustomDataSet_H

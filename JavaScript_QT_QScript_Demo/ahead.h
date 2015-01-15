@@ -58,4 +58,5 @@ int qScriptRegisterQObjectMetaType(
                                       qScriptValueToQObject, prototype);
 }
 
+
 #endif // AHEAD_H

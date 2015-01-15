@@ -54,6 +54,9 @@ public:
     Q_INVOKABLE QString value(int index) ;
     Q_INVOKABLE QString value(const QString & name) ;
 
+
+    Q_INVOKABLE int valueToInt(int index) ;
+    Q_INVOKABLE int valueToInt(const QString & name) ;
     Q_INVOKABLE double valueToDouble(int index) ;
     Q_INVOKABLE double valueToDouble(const QString & name) ;
 
