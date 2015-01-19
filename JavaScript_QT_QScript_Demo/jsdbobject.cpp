@@ -23,16 +23,11 @@ JSDBObject::~JSDBObject()
 
 JSDataSet * JSDBObject::creatDataSetObject(int parentID)
 {
-    qDebug()<<"创建前 m_autoId= "<<m_autoId;
-    qDebug()<<"创建前 表中有对象个数： "<<m_hashObjects->size();
     ++m_autoId;
     m_hashID->insert(m_autoId,parentID);
     JSDataSet * jsds=new JSDataSet();
     m_hashObjects->insert(m_autoId,jsds);
     jsds->setObjectId(m_autoId);
-    qDebug()<<("创建了一个JSDataSet对象，编号为：")<<m_autoId
-              <<"此时表中有对象个数： "<<m_hashObjects->size();
-    qDebug()<<"创建前 m_autoId= "<<m_autoId;
     return jsds;
 }
 

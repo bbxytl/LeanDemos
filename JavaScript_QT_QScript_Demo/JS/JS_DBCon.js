@@ -97,17 +97,26 @@ function setDataSet(pds)
         case 2:
             if(pds.value("pkey")!==skey[top]){ //当前数据非栈顶元素的子，需要插入合计并退栈
                 addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top);
+                popStack(skey,stype,sRow,sdata,sFlag);
                 --top;
             }//入栈分部
             pushStack(skey,stype,sRow,sdata,sFlag,key,type,pds.getRowsCount(),dt);
             ++top;
             break;
         case 3:
+            if(pds.next()){
+                if(pds.valueToInt("type")!==4){//非清单，不显示
+                    pds.previous();//返回上一个记录
+                    continue;   //不插入这条数据，直接下一条
+                }
+            }
+            pds.previous();
             if(pds.value("pkey")!==skey[top]){ //当前数据非栈顶元素的子，需要插入合计并退栈
                 addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top);
+                popStack(skey,stype,sRow,sdata,sFlag);
                 --top;
             }else{
-                if(sFlag[top]!==1)sFlag[top]=1;
+                sFlag[top]+=1;
                 dt[0]=" ";
             }
             break;
@@ -120,6 +129,7 @@ function setDataSet(pds)
     //数据读取完成，判断栈中是否还有数据
     while(top>-1){//添加合计
         addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top);
+        popStack(skey,stype,sRow,sdata,sFlag);
         --top;
     }
     removeNoUseRow(pds,sNoUsedRow);//清除无用行
@@ -128,7 +138,7 @@ function setDataSet(pds)
 }
 function addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top){
     var spopData=sdata[top];//获取栈顶数据
-     if(sFlag[top]===1){
+     if(sFlag[top]>0){
          var row=sRow[top];
          var sz=pds.getColsCount();
          spopData[0]=" ";
@@ -142,7 +152,6 @@ function addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top){
      }else{     //删除不需要合计的分部数据
          sNoUsedRow.push(sRow[top]);
      }
-    popStack(skey,stype,sRow,sdata,sFlag);
 }
 
 function pushStack(skey,stype,sRow,sdata,sFlag,key,type,row,dt){
