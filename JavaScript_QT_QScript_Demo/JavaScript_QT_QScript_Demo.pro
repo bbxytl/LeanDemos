@@ -32,8 +32,8 @@ FORMS    += mainwindow.ui
 
 OTHER_FILES += \
     ../Build/JavaScript_QT_QScript_Demo-Debug/JSCode.js \
-    ../Build/JavaScript_QT_QScript_Demo-Debug/JS_DBCon.js \
-    ../Build/JavaScript_QT_QScript_Demo-Debug/JS_DB_GCLQD.js
+    ../Build/JavaScript_QT_QScript_Demo-Debug/工程量清单项目预算表.js \
+    ../Build/JavaScript_QT_QScript_Demo-Debug/工程量清单项目预算表_GCLQD.js
 
 
 #娣诲姞搴撴枃浠惰矾锟斤拷?

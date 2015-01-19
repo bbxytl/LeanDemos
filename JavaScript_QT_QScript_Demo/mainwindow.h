@@ -42,7 +42,9 @@ private slots:
 
     void on_action_Clear_triggered();
 
-
+public:
+    QString getJSCode();
+    void    setJSCode(QString fileName);
 private:
     void EnableControl(bool bf);  //设置部分控件的可用性
     void setCustomData(int customDataId);
@@ -58,7 +60,6 @@ private:
     QLabel        * m_label; //状态栏显示状态
 
     NCReport      * m_report;
-//    CustomDataSet * m_dataSet;
     JSDBObject    * m_objects;
     QScriptValue    m_global;
 };

@@ -119,6 +119,16 @@ void JSDBObject::setTemplate(QString templateName)
     m_template=templateName;
 }
 
+QString JSDBObject::getJSCode()
+{
+    return m_fileName;
+}
+
+void JSDBObject::setJSCode(QString fileName)
+{
+    m_fileName=fileName;
+}
+
 int JSDBObject::autoID()
 {
     return (++m_autoId);

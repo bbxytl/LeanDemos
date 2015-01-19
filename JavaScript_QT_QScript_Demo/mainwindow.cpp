@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 //    m_fileName="JSCode.js";
-    m_fileName="JS_DBCon.js";       //无输出---最终的JS
-//    m_fileName="JS_DB_GCLQD.js";    //有输出
+    m_fileName="工程量清单项目预算表.js";       //无输出---最终的JS
+//    m_fileName="工程量清单项目预算表_GCLQD.js";    //有输出
 
     ui->stackedWidget->setCurrentIndex(0);
     ui->splitter->setStretchFactor(1,5);
@@ -210,4 +210,15 @@ void MainWindow::on_action_Pre_triggered()
 void MainWindow::on_action_Clear_triggered()
 {
     m_report->reset();
+}
+
+QString MainWindow::getJSCode()
+{
+    m_fileName=m_objects->getJSCode();
+    return m_fileName;
+}
+
+void MainWindow::setJSCode(QString fileName)
+{
+    m_objects->setJSCode(fileName);
 }

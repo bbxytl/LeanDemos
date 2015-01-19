@@ -28,7 +28,10 @@ public:
     Q_INVOKABLE void    clear();
 
     Q_INVOKABLE QString    getTemplate();
-    Q_INVOKABLE void       setTemplate(QString templateName);
+    Q_INVOKABLE void       setTemplate(QString templateName);    
+
+    Q_INVOKABLE QString    getJSCode();
+    Q_INVOKABLE void       setJSCode(QString fileName);
 
 
 private:
@@ -42,6 +45,7 @@ private:
     QHash<int,int>        * m_hashID;
     QString                 m_con;    
     QString                 m_template;       //存放NCReport模板文件的路径
+    QString                 m_fileName;       //存放模板对应的JScode文件路径
     int   m_autoId;
     int   m_curObjectId;
     int   m_setUseDataSetID;
