@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 //    m_fileName="JSCode.js";
-    m_fileName="JS_DBCon.js";
-    m_fileName="JS_DB_GCLQD.js";
+    m_fileName="JS_DBCon.js";       //无输出---最终的JS
+//    m_fileName="JS_DB_GCLQD.js";    //有输出
 
     ui->stackedWidget->setCurrentIndex(0);
     ui->splitter->setStretchFactor(1,5);

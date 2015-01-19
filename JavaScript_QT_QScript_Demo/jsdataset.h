@@ -86,15 +86,17 @@ public:
 
     Q_INVOKABLE void addCols(const QStringList &cols);
     Q_INVOKABLE int  getColsCount( );    //获取列数
-    Q_INVOKABLE int  getRowsCount( );    //获取列数
-    Q_INVOKABLE void insertData(const QList<QVariant> &data,const int pos=-1);
+    Q_INVOKABLE int  getRowsCount( );    //获取行数
+    Q_INVOKABLE void insertData(const QVariantList &data,const int pos=-1);
     Q_INVOKABLE void insertCol(const QString &columnName,const int pos=-1);
 
     Q_INVOKABLE QVariant getData(const int row,const int col);
-    Q_INVOKABLE bool modifyData(const int row, const int col, const QVariant &data);
+    Q_INVOKABLE bool modifyData(const int row, const int col,
+                                const QVariant &data=QVariant());
     Q_INVOKABLE bool modifyCol(const int col, const QString &data);
     Q_INVOKABLE bool modifyCol(const QString &colNameOld,
                                const QString &colNameNew);
+    Q_INVOKABLE QVariant removeData(const int pos=-1);   //remove one data
     Q_INVOKABLE void setID(const QString &dsid);    //设置数据前要先设置这个,数据源ID
 
     Q_INVOKABLE void clear();       //清除上一次的数据、查询、调用信息

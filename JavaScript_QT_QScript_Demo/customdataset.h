@@ -23,15 +23,15 @@ public:
     void addData(const QList<QVariantList> &datas );   //add the datas to DataSource
     void addCols(const QStringList &cols);     //add the cols to DataSource
 
-    void insertData(const QList<QVariant> &data,const int pos=-1);   //add one data
+    void insertData(const QVariantList &data,const int pos=-1);   //add one data
     void insertCol(const QString &columnName,const int pos=-1);      //add one col
 
     QVariant getData(const int row, const int col);
-    bool modifyData(const int row, const int col, const QVariant &data);
+    bool modifyData(const int row, const int col, const QVariant &data=QVariant());
     bool modifyCol(const int col, const QString &data);
     bool modifyCol(const QString &colNameOld, const QString &colNameNew);
 
-
+    QVariantList removeData(const int pos=-1);   //remove one data
 
     QList<QVariantList> * getCustomData();
     void clear();

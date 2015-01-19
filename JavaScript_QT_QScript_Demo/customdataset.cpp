@@ -127,7 +127,7 @@ void CustomDataSet::addData(const QList<QVariantList> &datas)
 
 }
 
-void CustomDataSet::insertData(const QList<QVariant> &data, const int pos)
+void CustomDataSet::insertData(const QVariantList &data, const int pos)
 {
     if(pos!=-1 && pos<m_lsVar.size())
         m_lsVar.insert(pos,data);
@@ -186,6 +186,23 @@ bool CustomDataSet::modifyCol(const QString &colNameOld,
         return false;
     }
     return true;
+}
+
+QVariantList CustomDataSet::removeData(const int pos)
+{
+    try{
+        QVariantList rs;
+        if(pos==-1){
+            rs=m_lsVar.last();
+            m_lsVar.removeLast();
+        }else{
+            rs=m_lsVar.at(pos);
+            m_lsVar.removeAt(pos);
+        }
+        return rs;
+    }catch(...){
+        return QList<QVariant>();
+    }
 }
 
 QList<QVariantList> *CustomDataSet::getCustomData()

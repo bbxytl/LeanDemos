@@ -307,7 +307,7 @@ int JSDataSet::getRowsCount()
     return m_custData->rowCount();
 }
 
-void JSDataSet::insertData(const QList<QVariant> &data, const int pos)
+void JSDataSet::insertData(const QVariantList &data, const int pos)
 {
     m_custData->insertData(data,pos);
 }
@@ -335,6 +335,11 @@ bool JSDataSet::modifyCol(const int col,const QString &data )
 bool JSDataSet::modifyCol(const QString &colNameOld, const QString &colNameNew)
 {
     return m_custData->modifyCol(colNameOld,colNameNew);
+}
+
+QVariant JSDataSet::removeData(const int pos)
+{
+    return m_custData->removeData(pos);
 }
 
 void JSDataSet::setID(const QString &dsid)
