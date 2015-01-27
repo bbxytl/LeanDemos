@@ -5,8 +5,6 @@
 #include "customdataset.h"
 
 
-#include <QObject>
-
 class JSDataSet : public QObject
 {
     Q_OBJECT
@@ -102,7 +100,7 @@ public:
     Q_INVOKABLE void clear();       //清除上一次的数据、查询、调用信息
 
     Q_INVOKABLE void setObjectId(int objectid);    //创建类对象时对应的对象id编号
-    Q_INVOKABLE int getObjectId();
+    Q_INVOKABLE int  getObjectId();
 
 signals:
 
@@ -122,9 +120,6 @@ private:
     CustomDataSet *m_custData;          //存储处理好的数据
 
 };
-
-//Q_SCRIPT_DECLARE_QMETAOBJECT(JSDataSet, QObject*)
-//Q_DECLARE_METATYPE(JSDataSet)
 
 Q_DECLARE_METATYPE(JSDataSet*)
 

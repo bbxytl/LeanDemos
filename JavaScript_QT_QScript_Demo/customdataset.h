@@ -2,16 +2,6 @@
 #define CustomDataSet_H
 
 #include "ahead.h"
-#include <QDate>
-
-
-
-typedef QList<QVariant> QVariantList;
-
-typedef struct KeyRowData{
-    unsigned int row;
-    unsigned int child;
-}KeyRow;
 
 class CustomDataSet : public NCReportDataSource
 {
@@ -61,7 +51,6 @@ private:
     QList<QVariantList> m_lsVar;        //save the all data(all Type)
     QStringList m_colName;      //save the colName of the data
 
-//    QHash<int,KeyRow> m_keyRow;
 };
 
 #endif // CustomDataSet_H

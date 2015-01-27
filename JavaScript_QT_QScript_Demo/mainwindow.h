@@ -5,7 +5,6 @@
 #include <QLabel>
 
 #include "ahead.h"
-//#include "old\jsdatabase.h"
 #include "jsdbobject.h"
 #include "jsdataset.h"
 
@@ -56,12 +55,12 @@ private:
     QString         m_ScriptString; //存放读取的JS脚本
 
     QScriptEngine   m_engine;   //JS解析引擎
-
-    QLabel        * m_label; //状态栏显示状态
-
     NCReport      * m_report;
     JSDBObject    * m_objects;
     QScriptValue    m_global;
+
+    QLabel        * m_label; //状态栏显示状态
+
 };
 
 

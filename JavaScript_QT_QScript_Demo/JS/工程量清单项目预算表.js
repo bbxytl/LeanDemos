@@ -28,9 +28,9 @@ function setDataSet(pds)
                          "综合单价",
                          "合价",
                          "分部合计"
-                         )
+                         );
     var con="datas.db";
-    var conName="connectNames15263688ds";
+    var conName="connectNames1528fdgxdfgds";
     var sqls;  //字段别名对应 asList 里的顺序！
     {
         var t=0;
@@ -46,12 +46,8 @@ function setDataSet(pds)
                     "',Machine     as  '"+asList[t++]+
                     "',Overhead    as  '"+asList[t++]+
                     "',Profit      as  '"+asList[t++]+
-                    "',(Labor   + Material + MainMaterialEquipment"+
-                    "+ Machine + Overhead + Profit)   "+     //综合单价
-                               "   as  '"+asList[t++]+
-                    "',((Labor   + Material + MainMaterialEquipment"+
-                    "+   Machine + Overhead + Profit) * Matecount) "+
-                               "   as  '"+asList[t++]+        //合价
+                    "',totalPrice  as  '"+asList[t++]+//综合单价
+                    "',sum         as  '"+asList[t++]+//合价
              "',parentid as pkey , key,type, path  from FBTreeData order by path";
     }
     pds.setConString(con);
@@ -74,7 +70,6 @@ function setDataSet(pds)
     var sdata=new Array();//存放入栈数据
     var sFlag=new Array();//存放入栈数据是否需要合计
     var sRow =new Array();//存放入栈key在list中所在的行
-    var sNoUsedRow=new Array();//存放最后要删除的行
     var top=-1;//栈顶
 //处理数据
     while(pds.next()){
@@ -95,7 +90,7 @@ function setDataSet(pds)
             break;
         case 2:
             while(pds.value("pkey")!==skey[top]){ //当前数据非栈顶元素的子，需要插入合计并退栈
-                addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top);
+                addHJ(pds,skey,stype,sdata,sFlag,sRow,top);
                 popStack(skey,stype,sRow,sdata,sFlag);
                 --top;
             }//入栈分部
@@ -111,7 +106,7 @@ function setDataSet(pds)
             }
             pds.previous();
             while(pds.value("pkey")!==skey[top]){ //当前数据非栈顶元素的子，需要插入合计并退栈
-                addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top);
+                addHJ(pds,skey,stype,sdata,sFlag,sRow,top);
                 popStack(skey,stype,sRow,sdata,sFlag);
                 --top;
             }
@@ -129,16 +124,15 @@ function setDataSet(pds)
     }
     //数据读取完成，判断栈中是否还有数据
     while(top>-1){//添加合计
-        addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top);
+        addHJ(pds,skey,stype,sdata,sFlag,sRow,top);
         popStack(skey,stype,sRow,sdata,sFlag);
         --top;
     }
-    removeNoUseRow(pds,sNoUsedRow);//清除无用行
     pds.close();
     pds.clearQuery();
     return conName;
 }
-function addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top){
+function addHJ(pds,skey,stype,sdata,sFlag,sRow,top){
     var spopData=sdata[top];//获取栈顶数据
      if(sFlag[top]>0){
          var row=sRow[top];
@@ -153,7 +147,7 @@ function addHJ(pds,skey,stype,sdata,sFlag,sRow,sNoUsedRow,top){
              pds.modifyData(row,col);
          }
      }else{     //删除不需要合计的分部数据
-         sNoUsedRow.push(sRow[top]);
+         pds.removeData(sRow[top]);
      }
 }
 
@@ -170,11 +164,5 @@ function popStack(skey,stype,sRow,sdata,sFlag){
     sRow.pop();
     sdata.pop();
     sFlag.pop();
-}
-
-function removeNoUseRow(pds,noUse){
-    for(var i=0;i<noUse.length;++i){//先入先出，队列 . 从list的后面先前删除行
-        pds.removeData(noUse[i]); //删除后面的行后，不影响前面的行号对应list中的位置
-    }
 }
 

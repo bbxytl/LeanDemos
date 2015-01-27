@@ -87,15 +87,7 @@ QVariant CustomDataSet::value(const QString & column, bool* ok, int i ) const
 QVariant CustomDataSet::value( int column, bool*, int ) const
 {
     QVariant v;
-//    switch (column) {
-//        case 0: v = m_lsVar.at(recno()); break;
-//        case 1: v = m_lsVar.at(recno()); break;
-//        case 2: v = m_lsVar.at(recno()); break;
-//        case 3: v = m_lsVar.at(recno()); break;
-//        case 4: v = m_lsVar.at(recno()); break;
-//    }
     if(column<m_lsVar.at(recno()).size())
-//    if(column<m_colName.size())
         v=m_lsVar.at(recno()).at(column);
     return v;
 }
@@ -267,13 +259,6 @@ int CustomDataSet::rowCount() const
 
 QString CustomDataSet::columnName(int column) const
 {
-//    switch(column) {
-//    case 0: return "id";
-//    case 1: return "name";
-//    case 2: return "address";
-//    case 3: return "valid";
-//    case 4: return "date";
-//    }
     if(column<m_colName.size())
         return m_colName.at(column);
 

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NCReport version="2.13.0" name="Untitled" type="report">
+    <options>
+        <encoding>UTF-8</encoding>
+        <language>00</language>
+        <langrole>0</langrole>
+        <orientation>landscape</orientation>
+        <pagesize width="297.000" height="210.000">A4</pagesize>
+        <topmargin>15</topmargin>
+        <bottommargin>15</bottommargin>
+        <leftmargin>20</leftmargin>
+        <rightmargin>20</rightmargin>
+        <backcolor>#ffffff</backcolor>
+        <columns>0</columns>
+        <columnspace>0</columnspace>
+        <zoneSpacing>0</zoneSpacing>
+        <zoneBreak>false</zoneBreak>
+        <fontname>Arial</fontname>
+        <fontsize>10</fontsize>
+        <fontstyle></fontstyle>
+        <htmlBodyStyle>{DEFAULT}</htmlBodyStyle>
+        <doublePass>true</doublePass>
+    </options>
+    <datasources>
+        <datasource id="cds0" allowEmpty="true" type="custom" openRole="begin" source="static"></datasource>
+        <datasource id="字段集" allowEmpty="true" type="txt" openRole="begin" source="static" columnDelimiter="space" hasColumnHeader="true" encoding="UTF-8">序号 类别 项目编码 项目名称 项目特征 计量单位 工程数量 单价 合价 暂估价 分部小计合价 分部小计暂估价
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2
+1asd ddd dfadfadf adfad adfasdf dfa 2 2 2 3 3 4 2</datasource>
+    </datasources>
+    <variables>
+        <variable id="本页小计合价" type="num" funcType="sum" scope="page" initValue="0">分部小计合价</variable>
+        <variable id="合计暂估价" type="num" funcType="sum" scope="report" initValue="0">分部小计暂估价</variable>
+        <variable id="本页小计暂估价" type="num" funcType="sum" scope="page" initValue="0">分部小计暂估价</variable>
+        <variable id="合计合价" type="num" funcType="sum" scope="report" initValue="0">分部小计合价</variable>
+    </variables>
+    <pageheader id="PH" height="0.000" autoHeight="true"/>
+    <pagefooter id="PF" height="8.731" printWhen="$V{pageno}!=$V{pagecount}">
+        <field id="11R2D" typeId="131074" zValue="-10" posX="223.837" posY="-1.587" width="23.812" height="9.525" resource="var" fontName="Arial" fontSize="10" alignment="132" type="num" ftype="var" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">本页小计暂估价</field>
+        <field id="AD4CQ" typeId="131074" zValue="-9" posX="201.612" posY="-1.587" width="22.225" height="9.525" resource="var" fontName="Arial" fontSize="10" alignment="132" type="num" ftype="var" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">本页小计合价</field>
+        <label id="QKNCF" zValue="1" posX="9.525" posY="-1.587" width="192.087" height="9.525" fontName="Arial" fontSize="10" alignment="132">本页小计</label>
+        <line id="1C8WT" zValue="2" zoneID="1" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="9.525" fromY="-17.462" toX="9.525" toY="7.938"/>
+        <line id="LAXAE" zValue="4" zoneID="1" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="247.650" fromY="-15.875" toX="247.650" toY="7.938"/>
+        <line id="OT8DC" zValue="5" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="9.525" fromY="7.938" toX="247.650" toY="7.938"/>
+        <line id="SAXE0" zValue="6" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fromX="201.612" fromY="7.938" toX="201.612" toY="-15.875"/>
+        <line id="HIFM6" zValue="7" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fromX="223.837" fromY="7.938" toX="223.837" toY="-15.875"/>
+    </pagefooter>
+    <reportheader id="rfoot" height="29.630" autoHeight="true" hideIfBlank="true">
+        <label id="PBZI7" zValue="0" posX="9.525" posY="22.225" width="19.050" height="4.762" fontName="Arial" fontSize="10" alignment="132">工程名称：</label>
+        <text id="5DTJO" zValue="1" posX="50.800" posY="4.762" width="161.925" height="12.700" autoHeight="true" useFont="true" fontName="Arial" fontSize="10" forecolor="#000000">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'宋体'; font-size:22pt; font-weight:600;&quot;&gt;分部分项工程和单价措施项目清单与计价表&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+        <field id="V06X0" typeId="131074" zValue="2" posX="239.712" posY="22.225" width="6.350" height="4.762" resource="sysvar" autoHeight="true" fontName="Arial" fontSize="10" alignment="68" type="txt" ftype="sys">pagecount</field>
+        <text id="FE28L" zValue="3" posX="246.062" posY="22.225" width="4.762" height="4.762" useFont="true" fontName="Arial" fontSize="10" forecolor="#000000">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'宋体'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;页&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+        <label id="1DL2T" zValue="4" posX="138.112" posY="22.225" width="20.637" height="4.762" fontName="Arial" fontSize="10" alignment="130">标段：</label>
+        <field id="UGDF7" zValue="5" posX="28.575" posY="22.225" width="109.537" height="4.762" resource="datasource" fontName="Arial" fontSize="10" alignment="65" type="txt" ftype="ds" arg="殷雷">工程名称</field>
+        <field id="0S7GE" typeId="131074" zValue="6" posX="158.750" posY="22.225" width="58.737" height="4.762" resource="param" fontName="Arial" fontSize="10" alignment="129" type="txt" ftype="par">标段</field>
+        <text id="V0XL2" zValue="7" posX="230.188" posY="22.225" width="11.112" height="4.762" useFont="true" fontName="Arial" fontSize="10" forecolor="#000000">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'宋体'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;页 共&lt;/span&gt;			         &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+        <text id="H70LW" zValue="8" posX="217.487" posY="22.225" width="6.350" height="4.762" useFont="true" fontName="Arial" fontSize="10" forecolor="#000000">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'宋体'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;right&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;第&lt;/span&gt;				   &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+        <field id="ZYB9F" typeId="131074" zValue="9" posX="223.837" posY="22.225" width="6.350" height="4.762" resource="sysvar" fontName="Arial" fontSize="10" alignment="68" type="txt" ftype="sys">pageno</field>
+    </reportheader>
+    <reportfooter id="rfoot" height="5.292" autoHeight="true" hideIfBlank="true">
+        <label id="SPM8J" zValue="0" posX="9.525" posY="0.000" width="106.362" height="4.762" fontName="Nimbus Roman No9 L" fontSize="10" alignment="1">注：为计取规费等的使用，可在表中增设其中：“定额人工费”。</label>
+    </reportfooter>
+    <details>
+        <detail id="Detail1" height="11.642" autoHeight="true" hideIfBlank="true" datasource="cds0">
+            <items>
+                <rectangle id="7BLPM" zValue="-36" posX="52.387" posY="1.587" width="39.688" height="9.525" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000" fitTo="zone"/>
+                <rectangle id="0JPZK" zValue="-35" posX="92.075" posY="1.587" width="44.450" height="9.525" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000" fitTo="zone"/>
+                <field id="HTPFP" zValue="-32" posX="52.387" posY="1.587" width="39.688" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="txt" ftype="ds">项目名称</field>
+                <rectangle id="7BLPM" zValue="-31" posX="136.525" posY="1.587" width="20.637" height="9.525" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000" fitTo="zone"/>
+                <field id="CCTUQ" typeId="131074" zValue="-30" posX="92.075" posY="1.587" width="44.450" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="txt" ftype="ds">项目特征</field>
+                <rectangle id="XX48T" zValue="-28" posX="176.212" posY="1.587" width="25.400" height="9.525" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000" fitTo="zone"/>
+                <rectangle id="7BLPM" zValue="-27" posX="157.162" posY="1.587" width="19.050" height="9.525" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000" fitTo="zone"/>
+                <field id="YXWQN" zValue="-26" posX="157.162" posY="1.587" width="19.050" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="num" ftype="ds" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">工程数量</field>
+                <field id="N7Q30" zValue="-25" posX="136.525" posY="1.587" width="20.637" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="txt" ftype="ds">计量单位</field>
+                <field id="QDPBM" zValue="-22" posX="20.637" posY="1.587" width="31.750" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="txt" ftype="ds">项目编码</field>
+                <rectangle id="9XR7Y" zValue="-21" posX="9.525" posY="1.587" width="11.112" height="9.525" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000" fitTo="zone"/>
+                <field id="N7Q30" zValue="0" posX="176.212" posY="1.587" width="25.400" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="num" ftype="ds" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">单价</field>
+                <rectangle id="UHHW9" zValue="2" posX="201.612" posY="1.587" width="22.225" height="9.525" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000"/>
+                <rectangle id="S057E" zValue="4" posX="223.837" posY="1.587" width="23.812" height="9.525" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000"/>
+                <field id="QBTPI" typeId="131074" zValue="5" posX="223.837" posY="1.587" width="23.812" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="num" ftype="ds" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">暂估价</field>
+                <field id="ROE94" zValue="6" posX="201.612" posY="1.587" width="22.225" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="num" ftype="ds" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">合价</field>
+                <rectangle id="7BLPM" zValue="12" posX="20.637" posY="1.587" width="31.750" height="9.525" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000" fitTo="zone"/>
+                <line id="WYWZS" zValue="15" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="9.525" fromY="1.587" toX="9.525" toY="11.112"/>
+                <line id="E9EXY" zValue="16" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="247.650" fromY="1.587" toX="247.650" toY="11.112"/>
+                <field id="QFD50" typeId="131074" zValue="18" posX="9.525" posY="1.587" width="11.112" height="9.525" resource="datasource" fontName="Arial" fontSize="10" alignment="132" wordbreak="true" type="txt" ftype="ds">序号</field>
+            </items>
+            <groups>
+                <group id="列标题_分组" groupExp="%CONST" resetVariables="" reprintHeader="false" startsOnNewPage="false">
+                    <groupheader id="GH_列标题_分组" height="0.000" autoHeight="true" hideIfBlank="true"/>
+                    <groupfooter id="GF_列标题_分组" height="10.583" printWhen="$V{pageno}==$V{pagecount}" autoHeight="true" hideIfBlank="true">
+                        <rectangle id="1U5PE" zValue="0" posX="201.612" posY="0.000" width="22.225" height="9.525" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff"/>
+                        <rectangle id="Z4KH6" zValue="1" posX="223.837" posY="0.000" width="23.812" height="9.525" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff"/>
+                        <label id="4ZJ7U" zValue="2" posX="9.525" posY="0.000" width="192.087" height="9.525" fontName="Arial" fontSize="10" alignment="132">合计</label>
+                        <line id="EUXLK" zValue="3" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="247.650" fromY="0.000" toX="247.650" toY="9.525"/>
+                        <line id="9N0A0" zValue="4" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="9.525" fromY="0.000" toX="9.525" toY="9.525"/>
+                        <line id="O32JT" zValue="5" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="9.525" fromY="9.525" toX="247.650" toY="9.525"/>
+                        <field id="UBEPH" typeId="131074" zValue="6" posX="223.837" posY="0.000" width="23.812" height="9.525" resource="var" fontName="Arial" fontSize="10" alignment="132" type="num" ftype="var" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">合计暂估价</field>
+                        <field id="MQCUQ" typeId="131074" zValue="7" posX="201.612" posY="0.000" width="22.225" height="9.525" resource="var" fontName="Arial" fontSize="10" alignment="132" type="num" ftype="var" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">合计合价</field>
+                        <rectangle id="0ZPQZ" zValue="8" posX="9.525" posY="0.000" width="192.087" height="9.525" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff"/>
+                    </groupfooter>
+                </group>
+                <group id="本页合计" groupExp="" resetVariables="" reprintHeader="false" startsOnNewPage="false">
+                    <groupheader id="本页合计" height="22.490" autoHeight="true" hideIfBlank="true">
+                        <rectangle id="3K4EP" zValue="0" posX="52.387" posY="3.175" width="39.688" height="14.287" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff" fitTo="zone"/>
+                        <label id="5G3A1" zValue="1" posX="136.525" posY="3.175" width="20.637" height="14.287" fontName="Arial" fontSize="10" alignment="132">计量
+单位</label>
+                        <rectangle id="QW8NK" zValue="2" posX="223.837" posY="9.525" width="23.812" height="7.938" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000"/>
+                        <rectangle id="6TKLF" zValue="3" posX="9.525" posY="3.175" width="11.112" height="14.287" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff" fitTo="zone"/>
+                        <line id="W9CZ6" zValue="4" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="9.525" fromY="3.175" toX="247.650" toY="3.175"/>
+                        <label id="L5KS2" zValue="5" posX="92.075" posY="3.175" width="44.450" height="14.287" fontName="Arial" fontSize="10" alignment="132">项目特征描述</label>
+                        <label id="U8II0" zValue="6" posX="20.637" posY="3.175" width="31.750" height="14.287" fontName="Arial" fontSize="10" alignment="132">项目编码</label>
+                        <label id="EP5Q0" zValue="7" posX="9.525" posY="3.175" width="11.112" height="14.287" fontName="Arial" fontSize="10" alignment="132">序号</label>
+                        <rectangle id="PD2GU" zValue="8" posX="201.612" posY="9.525" width="22.225" height="7.938" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000"/>
+                        <label id="2Z2WV" zValue="9" posX="176.212" posY="9.525" width="25.400" height="7.938" fontName="Arial" fontSize="10" alignment="132">综合单价</label>
+                        <rectangle id="E1GXK" zValue="10" posX="176.212" posY="3.175" width="71.438" height="6.350" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff"/>
+                        <rectangle id="WXM3Q" zValue="11" posX="157.162" posY="3.175" width="19.050" height="14.287" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff" fitTo="zone"/>
+                        <label id="B5WPB" zValue="12" posX="176.212" posY="3.175" width="71.438" height="6.350" autoHeight="true" fontName="Arial" fontSize="10" alignment="132" wordbreak="true">金额（元）</label>
+                        <line id="40432" zValue="13" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="247.650" fromY="3.175" toX="247.650" toY="19.050"/>
+                        <label id="DNB6G" zValue="14" posX="157.162" posY="3.175" width="19.050" height="14.287" fontName="Arial" fontSize="10" alignment="132">工程量</label>
+                        <label id="Z989I" zValue="15" posX="201.612" posY="9.525" width="22.225" height="7.938" fontName="Arial" fontSize="10" alignment="132">合价</label>
+                        <rectangle id="4Y7SB" zValue="16" posX="176.212" posY="9.525" width="25.400" height="7.938" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#000000"/>
+                        <rectangle id="P8EW6" zValue="17" posX="92.075" posY="3.175" width="44.450" height="14.287" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff" fitTo="zone"/>
+                        <label id="FNJZ4" zValue="18" posX="52.387" posY="3.175" width="39.688" height="14.287" fontName="Arial" fontSize="10" alignment="132">项目名称</label>
+                        <rectangle id="T9M3M" zValue="19" posX="20.637" posY="3.175" width="31.750" height="14.287" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff" fitTo="zone"/>
+                        <line id="CSDFX" zValue="20" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="9.525" fromY="3.175" toX="9.525" toY="19.050"/>
+                        <rectangle id="U4SZC" zValue="21" posX="136.525" posY="3.175" width="20.637" height="14.287" autoHeight="true" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff" fitTo="zone"/>
+                        <label id="6H26J" zValue="22" posX="223.837" posY="9.525" width="23.812" height="7.938" fontName="Arial" fontSize="10" alignment="132">其中：
+暂估价</label>
+                    </groupheader>
+                    <groupfooter id="本页合计" height="10.583" printWhen="$V{pageno}==$V{pagecount}" autoHeight="true" hideIfBlank="true">
+                        <rectangle id="KHVEV" zValue="0" posX="9.525" posY="0.000" width="192.087" height="9.525" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff"/>
+                        <rectangle id="KTX70" zValue="1" posX="223.837" posY="0.000" width="23.812" height="9.525" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff"/>
+                        <rectangle id="ZXVG7" zValue="2" posX="201.612" posY="0.000" width="22.225" height="9.525" lineColor="#000000" lineStyle="solid" lineWidth="0.100" fillStyle="no" fillColor="#ffffff"/>
+                        <label id="7QNTJ" zValue="3" posX="9.525" posY="0.000" width="192.087" height="9.525" fontName="Arial" fontSize="10" alignment="132">本页小计</label>
+                        <line id="91C8W" zValue="4" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="9.525" fromY="0.000" toX="9.525" toY="9.525"/>
+                        <line id="Q11R2" zValue="5" lineColor="#000000" lineStyle="solid" lineWidth="0.500" fromX="247.650" fromY="0.000" toX="247.650" toY="9.525"/>
+                        <field id="TLAXA" typeId="131074" zValue="6" posX="201.612" posY="0.000" width="22.225" height="9.525" resource="var" fontName="Arial" fontSize="10" alignment="132" type="num" ftype="var" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">本页小计合价</field>
+                        <field id="E8EV5" typeId="131074" zValue="7" posX="223.837" posY="0.000" width="23.812" height="9.525" resource="var" fontName="Arial" fontSize="10" alignment="132" type="num" ftype="var" formatting="true" numwidth="0" format="f" precision="2" localized="false" blankifzero="true">本页小计暂估价</field>
+                    </groupfooter>
+                </group>
+            </groups>
+        </detail>
+    </details>
+</NCReport>

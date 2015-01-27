@@ -1,7 +1,6 @@
 #ifndef JSDBOBJECT_H
 #define JSDBOBJECT_H
 
-#include <QObject>
 #include "ahead.h"
 #include "jsdataset.h"
 
@@ -34,8 +33,6 @@ public:
     Q_INVOKABLE void       setJSCode(QString fileName);
 
 
-private:
-    int         autoID();   //自动生成ID
 
 signals:
 

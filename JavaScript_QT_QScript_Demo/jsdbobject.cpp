@@ -129,7 +129,3 @@ void JSDBObject::setJSCode(QString fileName)
     m_fileName=fileName;
 }
 
-int JSDBObject::autoID()
-{
-    return (++m_autoId);
-}

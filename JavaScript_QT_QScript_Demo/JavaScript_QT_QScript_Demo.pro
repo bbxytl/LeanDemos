@@ -30,11 +30,6 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-OTHER_FILES += \
-    ../Build/JavaScript_QT_QScript_Demo-Debug/JSCode.js \
-    ../Build/JavaScript_QT_QScript_Demo-Debug/工程量清单项目预算表.js \
-    ../Build/JavaScript_QT_QScript_Demo-Debug/工程量清单项目预算表_GCLQD.js
-
 
 #娣诲姞搴撴枃浠惰矾锟斤拷?
 LIBS += D:/API/NCReport/2.13.0.MinGW.Qt5.3.2.eval/lib/libNCReportDebug2.a
@@ -45,3 +40,8 @@ INCLUDEPATH += C:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/5.3.1
 #娣诲姞鎼滅储璺緞
 DEPENDPATH += D:/API/NCReport/2.13.0.MinGW.Qt5.3.2.eval/include
 DEPENDPATH += C:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/5.3.1
+
+OTHER_FILES += \
+    ../Build/JavaScript_QT_QScript_Demo-Debug/07分部分项工程和单价措施项目清单与计价表_GCLQD.js \
+    ../Build/JavaScript_QT_QScript_Demo-Debug/工程量清单项目预算表.js \
+    ../Build/JavaScript_QT_QScript_Demo-Debug/工程量清单项目预算表_GCLQD.js

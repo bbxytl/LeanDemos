@@ -9,14 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-//    m_fileName="JSCode.js";
-    m_fileName="工程量清单项目预算表.js";       //无输出---最终的JS
-//    m_fileName="工程量清单项目预算表_GCLQD.js";    //有输出
-
     ui->stackedWidget->setCurrentIndex(0);
     ui->splitter->setStretchFactor(1,5);
-
     m_label = new QLabel();
     m_label->setText("编辑 JavaScript 文件...   |  编辑后保存文件切换到 Run 界面... ");
     ui->statusBar->addWidget(m_label);
@@ -26,9 +20,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lineEdit_Fun->setText("GetDataSource");
 
 
+    //重要代码
+    m_fileName="工程量清单项目预算表.js";       //无输出---最终的JS
+    m_fileName="工程量清单项目预算表_GCLQD.js";    //有输出
+    m_fileName="07分部分项工程和单价措施项目清单与计价表_GCLQD.js";
     m_report =new NCReport();
     m_objects =new JSDBObject();
-//重要代码
     qScriptRegisterQObjectMetaType<JSDataSet*>(&m_engine);//注册 JSDataSet*
     //向JS里添加全局变量
     m_global = m_engine.globalObject();    //获取全局对象

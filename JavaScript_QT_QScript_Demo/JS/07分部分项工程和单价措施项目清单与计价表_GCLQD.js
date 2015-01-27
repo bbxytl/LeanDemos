@@ -9,7 +9,7 @@ function GetDataSource()
     var index=pds.getObjectId();        //获取数据源对应的id
     //var index=object.getDSObjectID(pds); //另一种获取方式！
     var rs=setDataSet(pds);     // 给pds设置绑定数据源
-    object.setTemplate("工程量清单项目预算表.xml");
+    object.setTemplate("07分部分项工程和单价措施项目清单与计价表.xml");
     object.setUseDataSetID(index);
     return rs+"\n"+object.getTemplate();
 }
@@ -18,42 +18,34 @@ function setDataSet(pds)
 {
     //存放要获取的模板中的字段名
     var asList=new Array("序号",
-                         "清单编码",
+                         "项目编码",
                          "项目名称",
+                         "项目特征",
                          "计量单位",
-                         "工程量",
-                         "人工费",
-                         "辅材费",
-                         "主材费",
-                         "机械费",
-                         "管理费",
-                         "利润费",
-                         "综合单价",
+                         "工程数量",
+                         "单价",
                          "合价",
-                         "分部合计"
+                         "暂估价",
+                         "分部小计合价",
+                         "分部小计暂估价"
                          );
     var con="datas.db";
-    var conName="connectNamedfsdds";
+    var conName="connectNamesds";
     var sqls;  //字段别名对应 asList 里的顺序！
     {
         var t=0;
-//修改段--Begin
         sqls="select "+
                     " NUM          as  '"+asList[t++]+
                     "',CODE        as  '"+asList[t++]+
                     "',NAME        as  '"+asList[t++]+
+                    "',NAME        as  '"+asList[t++]+ //项目特征，暂时代替
                     "',UNIT        as  '"+asList[t++]+
                     "',Matecount   as  '"+asList[t++]+
-                    "',Labor       as  '"+asList[t++]+
-                    "',Material    as  '"+asList[t++]+
-                    "',MainMaterialEquipment as '"+asList[t++]+
-                    "',Machine     as  '"+asList[t++]+
-                    "',Overhead    as  '"+asList[t++]+
-                    "',Profit      as  '"+asList[t++]+
                     "',totalPrice  as  '"+asList[t++]+//综合单价
                     "',sum         as  '"+asList[t++]+//合价
-             "',parentid as pkey , key,type, path  from FBTreeData order by path";
-//修改段--End
+                    "',zgj         as  '"+asList[t++]+//暂估价
+
+             "',parentid as pkey , key, type, path  from FBTreeData order by path";
     }
     pds.setConString(con);
     pds.setSqlString(sqls);
@@ -87,12 +79,14 @@ function setDataSet(pds)
         ++count;
         var rs0;
         rs0=(pds.value("key"))+space;
-        for(var j=0;j<pdsColCount-1;j++){
+        for(var j=0;j<pdsColCount-2;j++){//留出“分部小计”
             rs0=rs0+pds.value(asList[j])+space;
             var data=pds.value(asList[j]);
             dt.push(data);
         }
-        dt.push(0); //"分部合计"
+        dt.push(0); //"分部小计合价"初始化0
+        dt.push(0); //"分部小计暂估价"初始化0
+
         var type=pds.valueToInt("type");	//获取其类型
         var key= pds.value("key");
         var pkey= pds.value("pkey");
@@ -102,7 +96,7 @@ function setDataSet(pds)
             ++top;
             break;
         case 2:
-            while(pds.value("pkey")!==skey[top]){ //当前数据非栈顶元素的子，需要插入合计并退栈
+            while(pds.value("pkey")!==skey[top]){ //当前数据非栈顶元素的子，需要插入小计并退栈
                 rs+=addHJ(pds,skey,stype,sdata,sFlag,sRow,top);
                 rs+=popStack(skey,stype,sRow,sdata,sFlag);
                 --top;
@@ -118,7 +112,7 @@ function setDataSet(pds)
                 }
             }
             pds.previous();
-            while(pds.value("pkey")!==skey[top]){ //当前数据非栈顶元素的子，需要插入合计并退栈
+            while(pds.value("pkey")!==skey[top]){ //当前数据非栈顶元素的子，需要插入小计并退栈
                 rs+=addHJ(pds,skey,stype,sdata,sFlag,sRow,top);
                 rs+=popStack(skey,stype,sRow,sdata,sFlag);
                 --top;
@@ -133,7 +127,9 @@ function setDataSet(pds)
             break;
         }
         rs=rs+"\n"+pds.getRowsCount()+"|"+rs0+"\n";
-        pds.insertData(dt); //向数据集添加一条记录
+        if(!(type===4)){ //定额不显示
+            pds.insertData(dt); //向数据集添加一条记录
+        }
 
     }
     //数据读取完成，判断栈中是否还有数据
@@ -147,20 +143,27 @@ function setDataSet(pds)
     pds.clearQuery();
     return rs;
 }
+//插入一条小计
 function addHJ(pds,skey,stype,sdata,sFlag,sRow,top){
     var spopData=sdata[top];//获取栈顶数据
     var rs=" ";
      if(sFlag[top]>0){
          var row=sRow[top];
          var sz=spopData.length;
-         rs=rs+pds.getRowsCount()+" 【插入一个合计： "+spopData[0];
+         rs=rs+pds.getRowsCount()+" 【插入一个小计： "+spopData[0];
          spopData[0]=" ";
-         spopData[2]="合计";
+         spopData[1]=" ";
+         spopData[2]="【"+spopData[2]+"】小计";
+         spopData[3]=" ";
          spopData[4]=" ";
-         spopData[sz-1]=spopData[sz-2];
+         spopData[5]=" ";
+         spopData[6]=" ";
+         spopData[9]=spopData[7];
+         spopData[10]=spopData[8];
          pds.insertData(spopData);//插入合计
          //清除分部行数据
-         for(var col=1;col<sz-1;++col){
+         for(var col=1;col<sz;++col){
+//             if(col!=7)
              pds.modifyData(row,col);
          }
      }else{     //删除不需要合计的分部数据
@@ -190,4 +193,3 @@ function popStack(skey,stype,sRow,sdata,sFlag){
             +" | Flag="+flag+" | type="+type+"\n";
     return rs;
 }
-
