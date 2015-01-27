@@ -1,49 +1,40 @@
-#ifndef JSDATASET_H
-#define JSDATASET_H
-
-#include "ahead.h"
-#include "customdataset.h"
-
-
-class JSDataSet : public QObject
-{
-    Q_OBJECT
-public:
-    explicit JSDataSet(QObject *parent=0);
+##JSDataSet
+继承自`QObject`,	`class JSDataSet : public QObject` 。主要用来连接数据库、查询数据库以及操作生成自定义数据源。提供给`JavaScript`代码使用。包装了`QSqlDatabase`,`QSqlQuery`,`CustomDataSet`三个类的方法。
+####构造函数、析构函数
+----------
+	explicit JSDataSet(QObject *parent=0);
     explicit JSDataSet(const QString &con,QObject *parent=0);
     explicit JSDataSet(const QString &con,
                        const QString &sql,
                        QObject *parent = 0);
-    ~JSDataSet();
-private:
-    void initClass();   //初始化属性字段
-
-public:
-
-    //数据获取--包装方法
-    Q_INVOKABLE bool open();
+	~JSDataSet();
+####public函数
+----------
+######包装的`QSqlDatabase`方法
+	Q_INVOKABLE bool open();
     Q_INVOKABLE void close();
     Q_INVOKABLE bool isOpen();
     Q_INVOKABLE bool isClose();
     Q_INVOKABLE QString databaseName() ;
     Q_INVOKABLE QString driverName();
+
     Q_INVOKABLE bool contains(const QString & connectionName);
     Q_INVOKABLE QString connectionName();
 
     QStringList connectionNames();
 
+    Q_INVOKABLE QString   getSqlString();     //获取Sql语句
+    Q_INVOKABLE QString   getConString();     //获取链接字符串
     Q_INVOKABLE void setConString(const QString & con);    //设置链接字符串
     Q_INVOKABLE void setSqlString(const QString & sql);    //设置SQL语句
+
     Q_INVOKABLE void setDatabase(const QString &conType,   //添加数据链接
                                  const QString &conName="default");
     Q_INVOKABLE void removeDatabase(const QString & conName);   //移除数据链接
 
-    Q_INVOKABLE QString   getSqlString();     //获取Sql语句
-    Q_INVOKABLE QString   getConString();     //获取链接字符串
-
     QSqlDatabase *  getDatabaseObject();//获取数据库链接对象
 
-    //查询处理
+######包装的`QSqlQuery`方法
     Q_INVOKABLE bool query();
     Q_INVOKABLE bool query(const QString & sql);
     Q_INVOKABLE bool isSelect();
@@ -63,8 +54,6 @@ public:
 
     Q_INVOKABLE QString value(int index) ;
     Q_INVOKABLE QString value(const QString & name) ;
-
-
     Q_INVOKABLE int valueToInt(int index) ;
     Q_INVOKABLE int valueToInt(const QString & name) ;
     Q_INVOKABLE double valueToDouble(int index) ;
@@ -75,19 +64,17 @@ public:
 
     QSqlQuery    *  getQueryObject();   //获取数据处理对象
 
-
-    //数据处理方法--自定义数据
+######包装的`CustomDataSet`方法
     CustomDataSet * getCustomDataObject();   //获取数据对象
 
     Q_INVOKABLE void clearCustomData();
 
     Q_INVOKABLE void addData(const QList<QVariantList> &datas );
-
     Q_INVOKABLE void addCols(const QStringList &cols);
-    Q_INVOKABLE int  getColsCount( );    //获取列数
-    Q_INVOKABLE int  getRowsCount( );    //获取行数
     Q_INVOKABLE void insertData(const QVariantList &data,const int pos=-1);
     Q_INVOKABLE void insertCol(const QString &columnName,const int pos=-1);
+    Q_INVOKABLE int  getColsCount( );    //获取列数
+    Q_INVOKABLE int  getRowsCount( );    //获取行数
 
     Q_INVOKABLE QVariant getData(const int row,const int col);
     Q_INVOKABLE bool modifyData(const int row, const int col,
@@ -103,13 +90,13 @@ public:
     Q_INVOKABLE void setObjectId(int objectid=1);    //创建类对象时对应的对象id编号
     Q_INVOKABLE int  getObjectId();
 
-signals:
+####private函数
+----------
+    void initClass();   //初始化属性字段
 
-public slots:
-
-private:
-
-    int          m_objectId;
+####private属性
+----------
+	int          m_objectId; //类对象对应的Id编号
     QSqlDatabase m_dbs;     //数据库对象
     QSqlQuery    m_query;   //处理语句
 
@@ -118,8 +105,9 @@ private:
 
     CustomDataSet *m_custData;          //存储处理好的数据
 
-};
-
-Q_DECLARE_METATYPE(JSDataSet*)
-
-#endif // JSDATASET_H
+#相关类
+---
+   [JSCode类调用方法](JSCode类调用方法.html)
+   [JSDBObject](JSDBObject类.html)
+   [JSDataSet](JSDataSet类.html)
+   [CustomDataSet](CustomDataSet类.html)

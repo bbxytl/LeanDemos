@@ -175,38 +175,32 @@ bool JSDataSet::exec()
 
 QString JSDataSet::value(int index)
 {
-    m_value=m_query.value(index);
-    return m_value.toString();
+    return m_query.value(index).toString();
 }
 
 QString JSDataSet::value(const QString &name)
 {
-    m_value=m_query.value(name);
-    return m_value.toString();
+    return m_query.value(name).toString();
 }
 
 int JSDataSet::valueToInt(int index)
 {
-    m_value=m_query.value(index);
-    return m_value.toInt();
+    return m_query.value(index).toInt();
 }
 
 int JSDataSet::valueToInt(const QString &name)
 {
-    m_value=m_query.value(name);
-    return m_value.toInt();
+    return m_query.value(name).toInt();
 }
 
 double JSDataSet::valueToDouble(int index)
 {
-    m_value=m_query.value(index);
-    return m_value.toDouble();
+    return m_query.value(index).toDouble();
 }
 
 double JSDataSet::valueToDouble(const QString &name)
 {
-    m_value=m_query.value(name);
-    return m_value.toDouble();
+    return m_query.value(name).toDouble();
 }
 
 QString JSDataSet::lastQuery()
@@ -269,11 +263,6 @@ QSqlDatabase *JSDataSet::getDatabaseObject()
 QSqlQuery *JSDataSet::getQueryObject()
 {
     return &m_query;
-}
-
-QVariant JSDataSet::getValue()
-{
-    return m_value;
 }
 
 
