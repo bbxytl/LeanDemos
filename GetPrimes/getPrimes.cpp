@@ -67,6 +67,30 @@ void getPrime_3(){
     cout<<endl;
 }
 
+void getPrime_4()
+{
+    const int MAXN = 100;
+    bitset<(MAXN/2+1)> flag(0); //不考虑偶数位
+    int primes[MAXN / 3 + 1], pi=0;
+    primes[pi++]=2;
+    int i, j;
+    for (i = 3; i < MAXN; i+=2)
+    {
+        if (!(flag.test(i/2)))
+            primes[pi++] = i;
+        for (j = 1; (j < pi)  && (i * primes[j] < MAXN); j++)
+        {
+            flag.set(i*primes[j]/2);
+            if (i % primes[j] == 0)
+                break;
+        }
+    }
+
+    for(i=0;i<pi;++i)
+        cout<<primes[i]<<" ";
+    cout<<endl;
+}
+
 int main()
 {
     int b[2]={0};
@@ -88,6 +112,8 @@ int main()
     getPrime_2();
     cout <<endl<< "getPrime_3" << endl;
     getPrime_3();
+    cout <<endl<< "getPrime_4" << endl;
+    getPrime_4();
     return 0;
 }
 

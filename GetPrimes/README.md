@@ -3,7 +3,7 @@
 
 ##[**使用位操作符求素数**](https://github.com/bbxytl/Lean_Demos/tree/master/GetPrimes)
 
-先放代码：
+先放普通代码：
 ```cpp
 #include <iostream>
 using namespace std;
@@ -108,4 +108,38 @@ void getPrime_3(){
 }
 ```
 可以看到，使用**STL**的代码还是比较简洁的！
+
+##下面去除重复计算的部分
+刚才已经将偶数的计算去除了，但仍然还会有一部分的重复计算，比如：
+`i=3`时，会访问`15`，同时，当`i=5`时，也会访问`15`。
+先上代码：
+```cpp
+void getPrime_4()
+{
+    const int MAXN = 100;
+    bitset<(MAXN/2+1)> flag(0); //不考虑偶数位
+    int primes[MAXN / 3 + 1], pi=0;
+    primes[pi++]=2;
+    int i, j;
+    for (i = 3; i < MAXN; i+=2)
+    {
+        if (!(flag.test(i/2)))
+            primes[pi++] = i;
+        for (j = 1; (j < pi)  && (i * primes[j] < MAXN); j++) // 1
+        {
+            flag.set(i*primes[j]/2);
+            if (i % primes[j] == 0) // 2
+                break;
+        }
+    }
+    
+    for(i=0;i<pi;++i)
+        cout<<primes[i]<<" ";
+    cout<<endl;
+}
+```
+注释 **1** 表示让当前奇数和已经查出来的素数进行逐个相乘，相乘后的结果数肯定不是素数！
+注释 **2** 对于任何数来说，如果它如果是该素数的倍数那么它就不能再与素数表中该素数之后的素数相乘了，如9是3的倍数，所以在9*3之后就不能再去用计算9*5了。
+当数据量很大时，`getPrime_4()` 和 `getPrime_1()`的差别将在时间和空间上是很大的！
+
 
