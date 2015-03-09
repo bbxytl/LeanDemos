@@ -80,7 +80,32 @@ for (j = i; j < MAXN; j =j+i+i)
 通过这种方式，缩小了占用空间。
 [**代码文件**](https://github.com/bbxytl/Lean_Demos/blob/master/GetPrimes/getPrimes.cpp)
 
-####注：
+###**注**：
 当 `MAXN=200 ` 时，实际的素数只有**45**个，但**primes**的大小却是**66**，那么这里怎么能更进一步的优化呢？
 
+###附：
+由于这里使用的**C++**，那么为什么不使用**STL**中已有的容器类**`bitset`**呢：
+```cpp
+#include <bitset>
+void getPrime_3(){
+    const int MAXN = 100;
+    bitset<(MAXN/2+1)> flag(0); //不考虑偶数位
+    int primes[MAXN / 3 + 1], pi=0;
+    primes[pi++]=2;
+    int i, j;
+    for (i = 3; i < MAXN; i+=2){ //大于2的偶数一定不是素数，所以只要判断奇数即可
+        if (!(flag.test(i/2)))//如果对应位为false
+        {
+            primes[pi++] = i;
+            //i的倍数一定都不是素数，其中，j加上一个i后为偶数，上一级已经不考虑了，所以还要加上一个i
+            for (j = i; j < MAXN; j =j+i+i)
+                flag.set(j/2);//设置对应位为true
+        }
+    }
+    for(i=0;i<pi;++i)
+        cout<<primes[i]<<" ";
+    cout<<endl;
+}
+```
+可以看到，使用**STL**的代码还是比较简洁的！
 

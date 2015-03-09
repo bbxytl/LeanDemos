@@ -24,7 +24,7 @@ void getPrime_1()
 
 void getPrime_2()
 {    
-    const int MAXN = 200;
+    const int MAXN = 100;
     const int BitN=(MAXN/2)/32+1;//
     int i, j;    
     int flag[BitN];
@@ -46,9 +46,29 @@ void getPrime_2()
     cout<<endl;
 }
 
+#include <bitset>
+void getPrime_3(){
+    const int MAXN = 100;
+    bitset<(MAXN/2+1)> flag(0);
+    int primes[MAXN / 3 + 1], pi=0;
+    primes[pi++]=2;
+    int i, j;
+    for (i = 3; i < MAXN; i+=2){ //大于2的偶数一定不是素数，所以只要判断奇数即可
+        if (!(flag.test(i/2)))//如果对应位为false
+        {
+            primes[pi++] = i;
+            //i的倍数一定都不是素数，其中，j加上一个i后为偶数，上一级已经不考虑了，所以还要加上一个i
+            for (j = i; j < MAXN; j =j+i+i)
+                flag.set(j/2);//设置对应位为true
+        }
+    }
+    for(i=0;i<pi;++i)
+        cout<<primes[i]<<" ";
+    cout<<endl;
+}
+
 int main()
 {
-
     int b[2]={0};
     int i=0;
     cout<<sizeof(i)<<endl;
@@ -66,6 +86,8 @@ int main()
     getPrime_1();
     cout <<endl<< "getPrime_2" << endl;
     getPrime_2();
+    cout <<endl<< "getPrime_3" << endl;
+    getPrime_3();
     return 0;
 }
 
