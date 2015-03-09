@@ -1,4 +1,4 @@
-[**GitHub博客**](https://github.com/bbxytl/bbxytl.github.com/blog) / [学习Demo](https://github.com/bbxytl/Lean_Demos) /
+[**GitHub博客**](https://github.com/bbxytl/bbxytl.github.com/tree/master/blog) / [学习Demo](https://github.com/bbxytl/Lean_Demos) /
 ====
 
 ##[**使用位操作符求素数**](https://github.com/bbxytl/Lean_Demos/tree/master/GetPrimes)
@@ -34,14 +34,14 @@ void getPrime_1()
 2. 使用**位操作符**使空间占用减少为原来的八分之一
 
 这里使用到对指定位置**置1**的操作：对于一个整数**X**可以通过将**1**左移**n**位后，与**X**进行**或**操作，使**X**的第**n**位**置1**。
-```
+```cpp
 int X=0;
 int n=10;
 X |= 1<< n; // 将 X 的第 n 位置 1
 ```
 
 所以根据上面两条，优化后的代码如下：
-```
+```cpp
 void getPrime_2()
 {    
     const int MAXN = 200;
@@ -66,13 +66,13 @@ void getPrime_2()
 }
 ```
 首先，根据最大数，判断需要32的整型多少个：
-```
+```cpp
 BitN=(MAXN/2)/32+1;
 ```
 ` MAXN/2 `去除了所有偶数位，` (MAXN/2)/32+1 `代表需要多少32位的整型。
 其次，所有求位的操作，都要除以2以去除偶数位的影响。
 同时：
-```
+```cpp
 for (j = i; j < MAXN; j =j+i+i)
                 flag[(j/2) / 32] |= (1 << ((j/2) % 32));
 ```
