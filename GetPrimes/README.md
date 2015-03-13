@@ -1,7 +1,7 @@
-[**GitHubBlog**](https://github.com/bbxytl/bbxytl.github.com/blob/master/blog/README.md#home--githubblog)
+[**GitHubBlog**](https://github.com/bbxytl/bbxytl.github.com/blob/master/blog/README.md#home--githubblog) /
 ====
 
-##[**使用位操作符求素数**](https://github.com/bbxytl/Lean_Demos/tree/master/GetPrimes)
+##[**使用位操作符求素数**](https://github.com/bbxytl/Lean_Demos/tree/master/GetPrimes#githubblog-)
 
 先放普通代码：
 ```cpp
