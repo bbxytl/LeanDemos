@@ -1,4 +1,4 @@
-[**GitHub博客**](https://github.com/bbxytl/bbxytl.github.com/tree/master/blog) / [学习Demo](https://github.com/bbxytl/Lean_Demos) /
+[**GitHubBlog**](https://github.com/bbxytl/bbxytl.github.com/blob/master/blog/README.md#home--githubblog)
 ====
 
 ##[**使用位操作符求素数**](https://github.com/bbxytl/Lean_Demos/tree/master/GetPrimes)
