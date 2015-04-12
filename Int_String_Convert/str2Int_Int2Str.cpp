@@ -1,5 +1,17 @@
 
-#include "cpp_head.h"
+
+#include <iostream>
+using namespace std;
+
+void printCharPtr(const char* str,unsigned int length=INT_MAX){
+    std::cout<<"char* : ";
+    if(str==nullptr || length<=0)return;
+    for(unsigned int i=0;i<length;++i){
+        if(str[i]=='\0')break;
+        std::cout<<str[i];
+    }
+    std::cout<<std::endl;
+}
 
 char * int2StrA(int);
 char * int2StrB(int);
