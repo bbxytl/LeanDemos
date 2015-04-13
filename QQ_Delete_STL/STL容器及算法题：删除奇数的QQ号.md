@@ -79,7 +79,7 @@ qq_delete_stl_template(v);
 ```
 分析的比较浅显，希望大神指教！
 
-[**完整测试源码**](./qq\_delete\_stl\_template.cpp)
+[**完整测试源码**](./qq_delete_stl_template.cpp)
 
             
 
