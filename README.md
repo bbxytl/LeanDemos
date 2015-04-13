@@ -11,6 +11,8 @@ QT中使用JavaScript编写数据处理函数给NCReport使用
 求素数操作
 ## [Int\_String\_Convert](./Int\_String\_Convert)
 整型数字和字符串直接的转换
+## [QQ\_Delete\_STL](./QQ\_Delete\_STL)
+STL容器及算法题：删除奇数的QQ号
 
 
 
