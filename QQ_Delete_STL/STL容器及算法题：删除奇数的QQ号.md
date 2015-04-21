@@ -81,7 +81,35 @@ qq_delete_stl_template(v);
 
 [**完整测试源码**](./qq_delete_stl_template.cpp)
 
-            
+##注：
+在vector的删除中，当使用erase删除时，每一次都会移动删除元素后面的元素，当数据量有一亿这样多时，效率会大打折扣。因此在使用vector时，应尽量避免使用erase来删除元素。由于在vector的末尾删除元素并不会移动元素，所以效率会很快，即使用pop_back来删除元素。那么上面对应的删除vector里的奇数QQ可以使用下面的函数来实现：
+```cpp
+#include <vector>
+
+typedef long long dlong;
+
+void qq_delete_stl_vector(std::vector<dlong> &v){
+    size_t Sz;
+    dlong tmp;
+    for (size_t i = 0; i < v.size(); ++i)
+    {
+        Sz = v.size();
+        if (v[Sz-1] & 1) // 如果最后一个QQ号为奇数
+        {
+            v.pop_back();
+            continue;
+        }
+        if (v[i] & 1)
+        {
+            tmp = v[i];
+            v[i] = v[Sz-1];
+            v[Sz-1] = tmp;
+            v.pop_back();
+        }
+    }
+        v.shrink_to_fit();
+}
+```
 
 ##**附录**
 - **[GitHub-Blog](http://bbxytl.github.io/)**

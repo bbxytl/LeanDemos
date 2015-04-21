@@ -76,3 +76,25 @@ void main(){
 }
 
 
+void qq_delete_stl_vector(std::vector<dlong> &v){
+    size_t Sz;
+    dlong tmp;
+    for (size_t i = 0; i < v.size(); ++i)
+    {
+        Sz = v.size();
+        if (v[Sz-1] & 1) // 如果最后一个QQ号为奇数
+        {
+            v.pop_back();
+            continue;
+        }
+        if (v[i] & 1)
+        {
+            tmp = v[i];
+            v[i] = v[Sz-1];
+            v[Sz-1] = tmp;
+            v.pop_back();
+        }
+    }
+        v.shrink_to_fit();
+}
+
